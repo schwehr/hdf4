@@ -4,6 +4,8 @@
  *   $Id: driver.c 6043 2014-01-21 21:09:03Z acheng $
  *********************************************************************/
 
+#include <string.h>
+
 #include "h4config.h"
 #ifdef H4_HAVE_NETCDF
 #include "netcdf.h"
