@@ -85,6 +85,7 @@ annotate(const char *editor, int ann)
     char       *file;           /* tmp file name */
     int i;
     int         ret;
+    int system_return;
 
     /* check if any hdf file is open
      */
@@ -146,7 +147,10 @@ annotate(const char *editor, int ann)
         }
         else {
             sprintf(cmd, "%s %s", editor, file);
-            system(cmd);
+            system_return = system(cmd);
+            if (-1 == system_return) {
+                fprintf(stderr, "Unable to start EDITOR: %s\n", cmd);
+            }
         }
     }
 #endif

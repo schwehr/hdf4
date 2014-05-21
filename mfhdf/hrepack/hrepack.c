@@ -402,13 +402,17 @@ int read_info(const char *filename,
             i=0; c='0';
             while( c!='"' )
             {
-                fscanf(fp, "%c", &c);
+                if (1 != fscanf(fp, "%c", &c)) {
+                  fprintf(stderr, "WARNING: parse trouble in read_info looking for begin.\n");
+                }
             }
             c='0';
             /* go until end */
             while( c!='"' )
             {
-                fscanf(fp, "%c", &c);
+                if (1 != fscanf(fp, "%c", &c)) {
+                  fprintf(stderr, "WARNING: Parse trouble in read_info looking for end.\n");
+                }
                 comp_info[i]=c;
                 i++;
             }
@@ -427,13 +431,17 @@ int read_info(const char *filename,
             i=0; c='0';
             while( c!='"' )
             {
-                fscanf(fp, "%c", &c);
+                if (1 != fscanf(fp, "%c", &c)) {
+                  fprintf(stderr, "WARNING: parse trouble in read_info for chunk begin.\n");
+                }
             }
             c='0';
             /* go until end */
             while( c!='"' )
             {
-                fscanf(fp, "%c", &c);
+                if (1 != fscanf(fp, "%c", &c)) {
+                  fprintf(stderr, "WARNING: parse trouble in read_info.\n");
+                }
                 comp_info[i]=c;
                 i++;
             }

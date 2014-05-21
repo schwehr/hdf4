@@ -392,6 +392,8 @@ getTemplate(const char *type, int imageNumber)
 
     printf("This is %s %d.\nWhat template would you like?\n",
            type, imageNumber);
-    scanf("%s", template);
+    if (1 != scanf("%s", template)) {
+      fprintf(stderr, "Warning: Did not understand input.\n");
+    }
     return template;
 }

@@ -122,6 +122,7 @@ main(int argc, char *argv[])
     int         Cache = 1;
     uint32      lmajor, lminor, lrelease;
     char        lstring[81];
+    int         system_return;
 
     /* Un-buffer the stdout and stderr */
     setbuf(stderr, NULL);
@@ -304,7 +305,10 @@ main(int argc, char *argv[])
           MESSAGE(2, printf("\nCleaning Up...\n\n");
               );
 #if !(defined DOS386 || defined WIN386)
-          system("rm -f *.hdf *.tmp");
+          system_return = system("rm -f *.hdf *.tmp");
+          if (-1 == system_return) {
+              fprintf(stderr, "ERROR: Unable to clean up.\n");
+          }
 #else   /* OLD_WAY */
           remove("*.hdf");
           remove("*.tmp");

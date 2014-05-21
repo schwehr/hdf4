@@ -73,9 +73,15 @@ palconv(char *palfile, char *outfile)
           printf(" Error opening palette file %s\n", palfile);
           exit(1);
       }
-    fread(reds, 1, 256, fp);
-    fread(greens, 1, 256, fp);
-    fread(blues, 1, 256, fp);
+    if (!fread(reds, 1, 256, fp)) {
+        fprintf(stderr, "WARNING: read failed.\n");
+    }
+    if (!fread(greens, 1, 256, fp)) {
+        fprintf(stderr, "WARNING: read failed.\n");
+    }
+    if (!fread(blues, 1, 256, fp)) {
+        fprintf(stderr, "WARNING: read failed.\n");
+    }
     fclose(fp);
 
     p = palspace;

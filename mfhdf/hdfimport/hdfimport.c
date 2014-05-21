@@ -2513,29 +2513,11 @@ interp(struct Input *in, struct Raster *im)
 static int
 isnum(char *s)
 {
-    char       *cp;
-    int         rval = FALSE;
-
-    /*
-     * check to see if its a floating point number
-     */
-    cp = s;
-    (void) strtod(s, &cp);
-    if ((*cp == '\0') && (cp != s))
-        rval = TRUE;
-
-    /*
-     * check to see if its an integer number (radix 8, 10, or 16)
-     */
-    else
-      {
-          cp = s;
-          (void) strtol(s, &cp, 0);
-          if ((*cp == '\0') && (cp != s))
-              rval = TRUE;
-      }
-
-    return (rval);
+    float tmp;
+    if (1 == sscanf(s, "%f", &tmp)) {
+        return (TRUE);
+    }
+    return (FALSE);
 }
 
 /*

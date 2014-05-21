@@ -770,14 +770,18 @@ writeAnnot(char *file, uint16 tag, uint16 ref)
     while (tag == 0)
       {
           printf("Attach to what tag? (> 0)");
-          scanf("%d", &tmp);
+          if (1 != scanf("%d", &tmp)) {
+              fprintf(stderr, "WARNING: Did not understand input.\n");
+          }
           tag = (uint16) tmp;
       }
 
     while (ref == 0)
       {
           printf("Attach to what ref? (> 0)");
-          scanf("%d", &tmp);
+          if (1 != scanf("%d", &tmp)) {
+              fprintf(stderr, "WARNING: Did not understand input.\n");
+          }
           ref = (uint16) tmp;
       }
 
