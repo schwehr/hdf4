@@ -542,9 +542,6 @@ int32 *dimsize)
     for (i = 0; i < rank; i++) {
         chunkcnt *= chunksizes[i];
     }
-    printf("total chunks is %ld\n",chunkcnt);
+    printf("total chunks is %d\n",chunkcnt);
     return 0;
 }
-
-
-
