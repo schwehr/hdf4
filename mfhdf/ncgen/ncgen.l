@@ -5,7 +5,10 @@
  *   $Id: ncgen.l 6036 2014-01-20 17:28:01Z acheng $
  *********************************************************************/
 
-#define	STREQ(a, b)	(*(a) == *(b) && strcmp((a), (b)) == 0)
+/* Why is STREQ defined in many places?  -Kurt Schwehr May, 2014 */
+#ifndef STREQ
+#  define	STREQ(a, b)	(*(a) == *(b) && strcmp((a), (b)) == 0)
+#endif
 
 /* lex specification for tokens for ncgen */
 

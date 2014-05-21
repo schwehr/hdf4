@@ -103,7 +103,10 @@ typedef enum
 #endif
 
 /* macros */
-#define STREQ(s, t) (HDstrcmp((s), (t)) == 0)
+/* Why is STREQ defined in many places?  -Kurt Schwehr May, 2014 */
+#ifndef STREQ
+#  define STREQ(s, t) (HDstrcmp((s), (t)) == 0)
+#endif
 #define NSTREQ(s, t, n) (HDstrncmp((s), (t), (n)) == 0)
 
 /*

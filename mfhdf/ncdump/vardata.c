@@ -29,7 +29,10 @@ extern char *fixstr(char *str, bool fix_str);
 static void annotate
     PROTO((struct ncvar *vp,struct fspec *fsp,long cor[], long iel));
 
-#define	STREQ(a, b)	(*(a) == *(b) && strcmp((a), (b)) == 0)
+/* Why is STREQ defined in many places?  -Kurt Schwehr May, 2014 */
+#ifndef STREQ
+#  define	STREQ(a, b)	(*(a) == *(b) && strcmp((a), (b)) == 0)
+#endif
 
 /*
  * Print a row of variable values.  Makes sure output lines aren't too long
