@@ -1860,7 +1860,7 @@ int ncvarput1(cdfid, varid, coords, value)
 int cdfid ;
 int varid ;
 const long *coords ;
-const ncvoid *value ;
+ncvoid *value ;
 {
 	NC *handle ;
 

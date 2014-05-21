@@ -443,7 +443,7 @@ HDFLIBAPI int ncvarput1	PROTO((
     int		cdfid,
     int		varid,
     const long*	coords,
-    const void*	value
+    void*	value
 ));
 HDFLIBAPI int ncvarget1	PROTO((
     int		cdfid,
