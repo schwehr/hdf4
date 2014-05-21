@@ -618,7 +618,12 @@ esac
 if test "X$BUILD_XDR" != "Xyes"; then
     AC_TRY_LINK([
     #include <rpc/types.h>
-    #include <rpc/xdr.h>], [xdr_int],
+    #include <rpc/xdr.h>], [
+  char buf[4];
+  const int block_size=4;
+  XDR stream;
+  xdrmem_create(&stream, buf, block_size, XDR_ENCODE);
+],
                 [AC_MSG_RESULT([yes]); BUILD_XDR="no"],
                 [AC_MSG_RESULT([no]); BUILD_XDR="yes"])
 fi
