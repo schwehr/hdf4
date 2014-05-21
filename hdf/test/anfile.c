@@ -134,7 +134,6 @@ checkannlen(int32 ret, const char *oldstr, const char *type, int32 testflag)
           printf("Length of %s is INCORRECT\n", type);
           printf("It is:  %d\n", (int) ret);
           printf("It should be: %d\n", (int) HDstrlen(oldstr));
-          testflag = FAIL;
           return FAIL;
       }
     return SUCCEED;
@@ -149,7 +148,6 @@ checkann(const char *oldstr, const char *newstr, int32 ret, const char *type,
           printf("%s is INCORRECT.\n", type);
           printf("It is:  %s\n", newstr);
           printf("It should be: %s\n", oldstr);
-          testflag = FAIL;
           return (FAIL);
       }
     return (SUCCEED);
