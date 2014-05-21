@@ -3546,7 +3546,7 @@ intn GRendaccess(int32 riid)
 
     /* Double check on setting the GR modified flag */
     /* Maybe this should be flagged as as error? -QAK */
-    if(ri_ptr->meta_modified==TRUE &&& ri_ptr->gr_ptr->gr_modified==FALSE)
+    if(ri_ptr->meta_modified==TRUE && ri_ptr->gr_ptr->gr_modified==FALSE)
         ri_ptr->gr_ptr->gr_modified=TRUE;
 
     /* Delete the atom for the RI ID */
