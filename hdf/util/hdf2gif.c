@@ -35,23 +35,6 @@ FILE *fpGif;
 }
 
 VOID
-WordToByte(w , b)
-WORD w;
-BYTE *b;
-{
-	if (EndianOrder == 0) /* Big Endian */
-	{
-		b[0] = w & 0xFF00;
-		b[1] = w & 0xFF;
-	}
-	else /* Little Endian */
-	{
-		b[0] = w & 0xFF;
-		b[1] = w & 0xFF00;
-	}
-}
-
-VOID
 putword(w, fp)
 int w;
 FILE *fp;
