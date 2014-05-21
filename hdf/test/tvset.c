@@ -266,7 +266,7 @@ write_vset_stuff(void)
     /* Verify that VSsetfields will return FAIL when passing in a NULL
        for field name list (bug #554) - BMR 5/17/01 */
     status = VSsetfields(vs1, NULL);
-    VERIFY(status, FAIL, "VSsetfields");
+    VERIFY_CONT(status, FAIL, "VSsetfields");
 
     status = VSsetfields(vs1, FIELD1);
     if (status == FAIL)
