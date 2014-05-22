@@ -114,9 +114,6 @@
 /* Copy the first part of user declarations.  */
 #line 9 "../../../hdf4/mfhdf/ncgen/ncgen.y"
 
-#ifndef lint
-static char SccsId[] = "$Id: ncgen.y 4928 2007-09-06 21:48:49Z epourmal $";
-#endif
 #include        <string.h>
 #include	<stdlib.h>
 #include        "ncgen.h"
@@ -2406,4 +2403,3 @@ clearout()	/* reset symbol table to empty */
     }
     symlist = 0;
 }
-
