@@ -1196,12 +1196,12 @@ test_getpalinfo()
 
     /* Initialize the 8-bit image array */
     static uint8 raster_data[WIDTH][LENGTH] =
-	{ 1, 2, 3, 4, 5,
-	  5, 4, 3, 2, 1,
-	  1, 2, 3, 4, 5,
-	  5, 4, 3, 2, 1,
-	  6, 4, 2, 0, 2 };
-     
+        {{1, 2, 3, 4, 5},
+         {5, 4, 3, 2, 1},
+         {1, 2, 3, 4, 5},
+         {5, 4, 3, 2, 1},
+         {6, 4, 2, 0, 2}};
+
     /* Palettes are added in the following means and order:
 	paletteA (DFPputpal)
 	paletteB (DFPputpal)

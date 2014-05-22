@@ -278,7 +278,17 @@ static int test_multidims()
     intn  num_errs = 0;		/* number of errors so far */
 
     /* result data to compare against read data */
-    int16 result3D[DIM00][DIM1][DIM2] = {300,-3,-3,-3,-3,-3,301,-3,-3,-3,-3,-3,302,-3,-3,-3,-3,-3,303,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,800,801,802,803,804,805};
+    int16 result3D[DIM00][DIM1][DIM2] = {
+      {{300,-3},{-3,-3},{-3,-3}},
+      {{301,-3},{-3,-3},{-3,-3}},
+      {{302,-3},{-3,-3},{-3,-3}},
+      {{303,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{800,801},{802,803},{804,805}}
+      /* WARNING: There are only 48 elements, but expected 60 (2*3*10). */
+    };
     int16 ncresult1D[] = {-1,-1,300,301,302,303,-1,-1,-1};
     int16 sdresult1D[] = {-1,-1,300,301,302,303};
 
@@ -475,7 +485,21 @@ static int test_multidims()
 	/* After the fourth data set (VARDOZEN) was added, the maximum number
 	   of records became 12.  Thus, the results must be changed to reflect
 	   the behavior in nc API. */
-    int16 result3D[DIM0][DIM1][DIM2] = {300,-3,-3,-3,-3,-3,301,-3,-3,-3,-3,-3,302,-3,-3,-3,-3,-3,303,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,-3,800,801,802,803,804,805, -3,-3,-3,-3,-3,-3, -3,-3,-3,-3,-3,-3, -3,-3,-3,-3,-3,-3, -3,-3,-3,-3,-3,-3};
+    int16 result3D[DIM0][DIM1][DIM2] = {
+      {{300,-3},{-3,-3},{-3,-3}},
+      {{301,-3},{-3,-3},{-3,-3}},
+      {{302,-3},{-3,-3},{-3,-3}},
+      {{303,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{800,801},{802,803},{804,805}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}},
+      {{-3,-3},{-3,-3},{-3,-3}}
+      /* WARNING: Not enough values to set the whole array.  [20][3][2] */
+    };
     int16 ncresult1D[] = {-1,-1,300,301,302,303,-1,-1,-1,-1,-1,-1};
     int16 ncresult1Ddozen[] = {-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10};
     int16 sdresult1D[] = {-1,-1,300,301,302,303};
@@ -610,8 +634,10 @@ static int test_readings(long max_numrecs)
     /* result data to compare against read data */
 
     /* data resulted from reading at start=[4,0,0] for edges=[6,1,1] */
-    int16 result3D_start400_edge611[DIM0][DIM1][DIM2] = {-3,-3,-3,800,-3,-3};
-
+    int16 result3D_start400_edge611[DIM0][DIM1][DIM2] = {
+      {{-3,-3},{-3,800},{-3,-3}}
+      /* WARNING: Not enough to fill the whole array. */
+    };
     /* data resulted from reading at start=[4] for edges=[6] */
     int16 result1D_start4_edge6[] = {302,303,-1,-1,-1,-1};
 
