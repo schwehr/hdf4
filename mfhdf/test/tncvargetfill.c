@@ -35,6 +35,9 @@
 #define DIM0 20	/* this value is used to declare larger buffer for when
 		   reading past the maximum number of records in the file */
 
+/* TODO: This should be in a header.  verify_info_data is in tunlim.c. */
+int verify_info_data(int32 sds_id, int32 expected_dimsize, int16 *result);
+
 /********************************************************************
    Name: test_1dim_multivars() - tests reading/writing on multiple variables,
 	each has 1 dimension

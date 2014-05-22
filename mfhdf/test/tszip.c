@@ -17,6 +17,9 @@
 #include "szlib.h"
 #endif
 
+/* TODO: Should be in a header. */
+intn make_datafilename(char* basename, char* testfile, unsigned int size);
+
 #define FILE_NAME8	"SDS_8_sziped.hdf"
 #define FILE_NAME16	"SDS_16_sziped.hdf"
 #define FILE_NAME32	"SDS_32_sziped.hdf"

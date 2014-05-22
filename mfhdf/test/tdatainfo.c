@@ -52,6 +52,13 @@
 
 #include "hdftest.h"
 
+/* TODO: Why is SDgetdatainfo not getting picked up from mfdatainfo.h? */
+#include "mfdatainfo.h"
+extern intn SDgetdatainfo (int32 sdsid, int32 *chk_coord, uintn start_block,
+                           uintn info_count, int32 *offsetarray,
+                           int32 *lengtharray);
+
+
 static intn test_nonspecial_SDSs();
 static intn test_compressed_SDSs();
 static intn test_empty_SDSs();

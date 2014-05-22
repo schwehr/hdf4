@@ -17,6 +17,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <unistd.h>
+
 #include "hdf.h"
 #include "hfile.h"
 #include "mfhdf.h"

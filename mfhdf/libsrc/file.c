@@ -19,9 +19,12 @@
 #ifdef DEBUG
 #include <assert.h>
 #endif /* DEBUG */
-
 #include	<string.h>
 #include	<errno.h>
+#ifndef NO_ACCESS
+#  include      <unistd.h>
+#endif
+
 #include	"local_nc.h"
 #include	"alloc.h"
 #include	"herr.h"

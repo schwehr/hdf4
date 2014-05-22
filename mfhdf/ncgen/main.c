@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #ifdef __hpux
 #include <locale.h>
@@ -118,4 +119,3 @@ char *argv[];
     yyin = fp;
     return (yyparse());
 }
-

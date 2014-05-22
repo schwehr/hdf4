@@ -85,6 +85,11 @@ void hrepack_end     (options_t *options);
 int  list(const char* infname,const char* outfname,options_t *options);
 int  read_info(const char *filename,options_t *options); 
 
+/* TODO: Not for public consumption. Put elsewhere? */
+int hrepack_main(const char* infile, const char* outfile, options_t *options);
+int list_main(const char* infname, const char* outfname, options_t *options);
+
+
 #ifdef __cplusplus
 }
 #endif

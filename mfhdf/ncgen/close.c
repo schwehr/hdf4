@@ -5,10 +5,9 @@
  *********************************************************************/
 
 #include <stdio.h>
+
 #include "ncgen.h"
-#ifdef EIP
 #include "genlib.h"
-#endif
 
 extern void fline(), cline();
 extern int netcdf_flag;
@@ -52,4 +51,3 @@ close_netcdf()
     if (fortran_flag)		/* create Fortran code to close netcdf */
       cl_fortran();
 }
-

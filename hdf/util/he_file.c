@@ -21,7 +21,7 @@ static char RcsId[] = "@(#)$Revision: 6043 $";
 #include "he.h"
 
 /* get the prototype for the wait() func. */
-#if defined SUN | defined HP9000 | defined IRIX | defined UNIX386
+#if defined SUN | defined HP9000 | defined IRIX | defined UNIX386 | defined __linux__
 #include <sys/wait.h>
 #endif /* SUN | HP9000 */
 #if defined _POSIX_SOURCE | defined IRIX

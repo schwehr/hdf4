@@ -69,6 +69,13 @@ PRIVATE data structures in here pertain to vdata in vsdir only.
 #define VSET_INTERFACE
 #include "hdf.h"
 
+static intn
+VSIgetvdatas(int32 id,
+             const char *vsclass,
+             const uintn start_vd,
+             const uintn n_vds,
+             uint16 *refarray);
+
 /* These are used to determine whether a vdata had been created by the
    library internally, that is, not created by user's application */
 #define HDF_NUM_INTERNAL_VDS	8
@@ -1567,7 +1574,7 @@ RETURNS
     The number of user-created vdatas if successful and FAIL, otherwise.
     BMR - 2010/07/10
 *******************************************************************************/
-intn
+static intn
 VSIgetvdatas(int32 id,		 /* IN: file id or vgroup id */
 	    const char *vsclass, /* IN: a specific class or NULL for user-created vdatas */
 	    const uintn start_vd,/* IN: vdata number to start retrieving */

@@ -50,6 +50,7 @@ static char RcsId[] = "@(#)$Revision: 6013 $";
 
 #define TESTMASTER
 
+#include <time.h>
 #include <sys/time.h>
 #include "hdf.h"
 #include "tutils.h"
