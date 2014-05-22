@@ -986,8 +986,8 @@ int get_print_info(  int chunk_flags,
     }   
     if (SDendaccess (sds_id)== FAIL )
         goto out;
-    
-    sprintf(comp_str,"\0");
+
+    comp_str[0] = '\0';
 
     /* unlimited dimensions don't work with compression */
     if ( is_record )
