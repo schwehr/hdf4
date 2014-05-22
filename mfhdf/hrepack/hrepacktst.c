@@ -2240,7 +2240,7 @@ fail:
     SDendaccess (sds_id);
     return FAIL;
 }
-#endif H4_HAVE_LIBSZ
+#endif /* H4_HAVE_LIBSZ */
 
 
 
