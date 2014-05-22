@@ -70,7 +70,6 @@ static int test_1dim_multivars()
     int32 start[1],		/* where to start writing */
 	  edges[1];		/* length of data to be read/written */
     int32 rank = 1;		/* rank of the 1-D data sets */
-    int16 outdata[DIM0];	/* data read back */
     int16 fillval1 = -1;	/* fill value for the variable */
     int16 fillval2 = -2;	/* fill value for the variable */
     intn  status = 0;		/* returned by called functions */
@@ -289,7 +288,6 @@ static int test_multidims()
       {{800,801},{802,803},{804,805}}
       /* WARNING: There are only 48 elements, but expected 60 (2*3*10). */
     };
-    int16 ncresult1D[] = {-1,-1,300,301,302,303,-1,-1,-1};
     int16 sdresult1D[] = {-1,-1,300,301,302,303};
 
     /* Create a new file */
@@ -502,7 +500,6 @@ static int test_multidims()
     };
     int16 ncresult1D[] = {-1,-1,300,301,302,303,-1,-1,-1,-1,-1,-1};
     int16 ncresult1Ddozen[] = {-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10,-10};
-    int16 sdresult1D[] = {-1,-1,300,301,302,303};
 
 	/* Open the file with nc API */
 	ncid = ncopen(FILENAME2, NC_RDWR);
@@ -616,18 +613,17 @@ static int test_multidims()
 static int test_readings(long max_numrecs)
 {
     int   ncid;                 /* file id */
-    int   var1id, var2id, var3id; /* variable ids */
+    int   var1id, var2id; /* variable ids */
     long  start[3];
     long  edges[3];
     long  dims[3];              /* dimension size buffer */
     int   rh_ndims;             /* number of dims */
     int   rh_dims[H4_MAX_VAR_DIMS];     /* variable shape */
     char  varname[H4_MAX_NC_NAME];	/* variable name */
-    int   ii, jj, kk;
+    int   ii;
     int16 outdata3D[DIM0][DIM1][DIM2];	/* 3-D data read back */
     int16 outdata1D[DIM0];	/* 1-D data read back */
     int32 dimsizes3D[3];		/* dimension size buffer for first SDS */
-    int32 dimsize1D[1];		/* dimension size buffer for second SDS */
     intn  status = 0;		/* returned by called functions */
     intn  num_errs = 0;		/* number of errors so far */
 
@@ -638,8 +634,6 @@ static int test_readings(long max_numrecs)
       {{-3,-3},{-3,800},{-3,-3}}
       /* WARNING: Not enough to fill the whole array. */
     };
-    /* data resulted from reading at start=[4] for edges=[6] */
-    int16 result1D_start4_edge6[] = {302,303,-1,-1,-1,-1};
 
     /* Open the file for reading and writing with nc API */
     ncid = ncopen(FILENAME2, NC_RDWR);

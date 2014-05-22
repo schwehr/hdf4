@@ -1256,15 +1256,10 @@ static intn test_getszipinfo()
     intn 	status;
     int32	dim_sizes[2], array_rank, num_type, attributes;
     char	name[H4_MAX_NC_NAME];
-    comp_info	c_info;
-    int32       start[2], edges[2];
     comp_coder_t comp_type;
     int32	comp_size, uncomp_size, orig_size;
-    int16       fill_value = 0;   /* Fill value */
-    int         i,j;
     int		num_errs = 0;    /* number of errors so far */
     char	testfile[512] = "";
-    int32      *out_data = NULL;
     char *basename = "sds_szipped.dat";
 
     /********************* End of variable declaration ***********************/

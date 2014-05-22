@@ -182,7 +182,6 @@ int vg_getngrpdep( HFILEID f)
     int32       vg, vgt;
     int32       vgid = -1;
     int32       vsid = -1;
-    int32       vsno = 0;
     int32       vstag;
     int32       i, nvg, n, ne, nlnk;
     uint16      name_len;

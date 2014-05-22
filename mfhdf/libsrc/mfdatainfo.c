@@ -744,7 +744,6 @@ intn SDgetanndatainfo(int32 sdsid, ann_type annot_type, uintn size, int32* offse
             an_id=FAIL,
             ann_id=FAIL;
     NC     *handle = NULL;  /* file structure */
-    NC_var *var = NULL;    /* variable structure of sds, to get NDG ref */
     int32  *dannots = NULL,  /* list of data annotation IDs */
             n_flabels = 0,  /* number of file labels */
             n_fdescs = 0,  /* number of file descriptions */

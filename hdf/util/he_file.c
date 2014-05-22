@@ -85,7 +85,6 @@ annotate(const char *editor, int ann)
     char       *file;           /* tmp file name */
     int i;
     int         ret;
-    int system_return;
 
     /* check if any hdf file is open
      */
@@ -141,7 +140,9 @@ annotate(const char *editor, int ann)
     /* the parent waits for the child to die */
     wait(0);
 #elif defined(H4_HAVE_SYSTEM)
-    {   char    cmd[256];
+    {
+        int system_return;
+        char    cmd[256];
         if (HDstrlen(editor) > 100) {
             fprintf(stderr, "Environment variable EDITOR too big\n");
         }

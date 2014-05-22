@@ -31,10 +31,7 @@ int main()
     int32   dim2_sizes[2];	/* sizes of the 2-dim SDS dimensions */
     int32   dim3_sizes[3];	/* sizes of the 3-dim SDS dimensions */
     int32   start2[2], start3[3];	/* start arrays for both SDSs */
-    int32   dim_id, dim_index,	/* dimension id and index */
-	    size, data_type, 	/* dimension's size and data type */
-	    nattrs;		/* number of attributes */
-    char    dim_name[20];
+
     float32 in2_data[X_LENGTH][Y_LENGTH]={ /* input for 2-dim SDS */
       {100.0,100.0,200.0,200.0,300.0,400.0,100.0,100.0,200.0},
       {200.0,300.0,400.0,100.0,100.0,200.0,200.0,300.0,400.0},

@@ -122,10 +122,14 @@ gen_c(filename)
 	cline("   /* dimension ids */");
 	strcpy(stmnt, "   int  ");
 	for (idim = 0; idim < ndims; idim++) {
-	    sprintf(s2,
-		    "%s_dim%s",
-		    dims[idim].name,
-		    idim == ndims-1 ? ";" : ", ");
+            if (idim != 2) {
+                sprintf(s2,
+                        "%s_dim%s",
+                        dims[idim].name,
+                        idim == ndims-1 ? ";" : ", ");
+            } else {
+              sprintf(s2, "/* unused */ ");
+            }
 	    if (strlen(stmnt) + strlen(s2) >= C_MAX_STMNT) {
 		if (idim < ndims-1) {
 		    stmnt[strlen(stmnt)-2] = '\0'; /* truncate trailing ", " */

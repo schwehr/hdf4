@@ -2492,7 +2492,6 @@ const long *edges ;
 ncvoid *values ;
 {
 	NC *handle;
-	NC_var *vp;
 	int  status = 0;
 
 	cdf_routine_name = "ncvarget";

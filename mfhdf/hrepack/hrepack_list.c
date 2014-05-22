@@ -333,9 +333,8 @@ int list_vg(int32 infile_id,
     int32  ref_vg;
     char   *vg_name;
     char   *vg_class;
-    uint16 name_len;
     int32  i;
-    
+
    /*-------------------------------------------------------------------------
     * initialize the V interface
     *-------------------------------------------------------------------------
@@ -1494,4 +1493,3 @@ int list_pal(const char* infname,
     
     return SUCCEED;
 }
-

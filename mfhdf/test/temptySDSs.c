@@ -85,7 +85,7 @@ static void check_getchunkinfo(
 {
     int32 sds_id, sds_index;
     HDF_CHUNK_DEF c_def_out; /* Chunking definitions */
-    int32 comp_flag, c_flags;
+    int32 c_flags;
     intn status;
     int num_errs = 0;
     char mesg[80];

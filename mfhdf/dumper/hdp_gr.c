@@ -802,7 +802,6 @@ intn print_grcomp_info(
 {
     comp_info c_info;                /* Compression structure */
     comp_coder_t comp_type = COMP_CODE_NONE;
-    int32 comp_size=0, orig_size=0;  /* compressed and original sizes */
     intn status = FAIL;	    /* returned status from a called function */
 
     /* Get compression info */

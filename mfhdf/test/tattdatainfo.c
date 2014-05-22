@@ -78,17 +78,14 @@ intn readnoHDF_char(const char *filename, const int32 offset, const int32 length
 static intn test_attrs()
 {
     int32 sd_id, sds_id, dim_id, dim_idx, att_idx;
-    int32 dimsizes[2], starts[2], edges[2], rank=0;
+    int32 dimsizes[2], starts[2], edges[2];
     int32 data1[LENGTH1_X];
     float data2[LENGTH2_X][LENGTH2_Y];
-    char  data3[LENGTH3_X], outdata3[LENGTH3_X];
     char  sds_name[20];
-    uintn info_count = 0;
     int32 n_values, nattrs;
     int32 offset=0, length=0;
    char8   file_values[] = "Storm_track_data";
    float32 sds_values[2] = {2., 10.};
-   float32 sds_values_out[2];
    char8   dim_values[]  = "Seconds";
     intn  status;
     int   ii, jj;
@@ -594,9 +591,8 @@ intn add_sdsNDG_annotations()
 ****************************************************************/
 intn add_sdsSDG_annotations()
 {
-    char        labsds[MAXLEN_LAB], labris[MAXLEN_LAB], descsds[MAXLEN_DESC],
+    char        labsds[MAXLEN_LAB], descsds[MAXLEN_DESC],
                 descris[MAXLEN_DESC];
-    uint8       pal[768];
     uint16      refnum;
     intn        rank;
     int         j;
@@ -708,12 +704,9 @@ intn get_ann_datainfo(
 static int test_dfannots(void)
 {
     int32 sd_id, sds_id, sds_index;
-    intn  ii, status, num_annots;
-    int32 n_datasets, n_file_attr, n_attrs; 
-    int32 *offsetarray=NULL, *lengtharray=NULL;
+    intn  status;
+    int32 n_datasets, n_file_attr;
     int32 chk_offsets[10], chk_lengths[10];
-    int32 num_labels = 0,      /* number of file or object labels */
-          num_descs = 0;       /* number of file or object descriptions */
     intn  num_errs = 0;
 
     /* Add file annotations */
@@ -853,7 +846,7 @@ static intn test_dfsdattrs()
 {
     int         i, j, ret;
     intn        rank;
-    int32       dims[2], num_datasets;
+    int32       dims[2];
     float32     f32[XX][YY], tf32[XX][YY];
     intn info_count=0;
     int32 offset=0, length=0;
@@ -1084,7 +1077,6 @@ intn readnoHDF_char(const char *filename, const int32 offset, const int32 length
    SDgetoldattdatainfo(), and SDgetanndatainfo() */
 extern int test_att_ann_datainfo()
 {
-    intn status;
     int num_errs = 0;
 
     /* Output message about test being performed */
