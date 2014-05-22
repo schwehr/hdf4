@@ -114,6 +114,9 @@ double check ;
 	case NC_DOUBLE :
 		assert( check == got.dbl ) ;
 		break ;
+        default:
+                fprintf(stderr, "WARNING: chkgot found un-handled case: %d\n",
+                        type);
 	}
 }
 
@@ -701,4 +704,3 @@ char *argv[];
 #endif
 	return 0;
 }
-

@@ -265,6 +265,9 @@ annotate(vp, fsp, cor, iel)
 	    Printf(",%d", (int)(1 + cor[id]));
 	}
 	break;
+      case LANG_NONE:
+        fprintf(stderr, "ERROR: LANG_NONE in annotate.\n");
+        break;
     }
     Printf(")\n    ");
 }
@@ -567,6 +570,9 @@ vardata(vp, vdims, ncid, varid, fsp)
 			Printf(",%d", (int)(1 + cor[id]));
 		    }
 		    break;
+                  case LANG_NONE:
+                    fprintf(stderr, "ERROR: LANG_NONE in vardata.\n");
+                    break;
 		}
 		Printf(")\n    ");
 		set_indent(4);

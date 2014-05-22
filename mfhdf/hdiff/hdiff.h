@@ -123,7 +123,7 @@ uint32  hdiff(const char *fname1, const char *fname2, diff_opt_t *opt);
  */
 
 uint32  gattr_diff(int32 sdid1, int32 sdid2, diff_opt_t *opt);
-void    pr_att_vals(nc_type type, int len, void *vals);
+void    pr_att_vals(int type, int len, void *vals);
 void    make_vars(char *optarg, diff_opt_t *opt, int option);
 
 
@@ -196,4 +196,3 @@ uint32 diff_sds(int32 sd1_id,
 
 
 #endif
-

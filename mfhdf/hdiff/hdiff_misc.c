@@ -56,29 +56,6 @@ name_path(char *path)
  return newc;
 }
 
-
-const char *
-type_name(nc_type type)
-{
- switch (type) {
- case DFNT_INT8:
-  return "byte";
- case DFNT_CHAR:
-  return "char";
- case DFNT_INT16:
-  return "short";
- case DFNT_INT32:
-  return "long";
- case DFNT_FLOAT:
-  return "float";
- case DFNT_DOUBLE:
-  return "double";
- default:
-  fprintf(stderr,"type_name: bad type %d", type);
-  return "bogus";
- }
-}
-
 /*
 * Remove trailing zeros (after decimal point) but not trailing decimal
 * point from ss, a string representation of a floating-point number that
@@ -115,7 +92,7 @@ tztrim(char *ss)
 * explicit type tags, because their types are not declared.
 */
 void
-pr_att_vals(nc_type type, int len, void *vals)
+pr_att_vals(int type, int len, void *vals)
 {
  int iel;
  union {
@@ -274,4 +251,3 @@ make_vars(char *optarg, diff_opt_t *opt, int option)
   else
    opt->nuvars = nvars;
 }
-
