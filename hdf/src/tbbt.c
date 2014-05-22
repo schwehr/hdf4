@@ -22,6 +22,8 @@ static char RcsId[] = "@(#)$Revision: 6043 $";
 /* Basic tree structure by Adel'son-Vel'skii and Landis */
 
 #include <stdio.h>  /* NULL */
+#include <stdlib.h>
+
 #include "hdf.h"
 #define TBBT_INTERNALS
 #include "tbbt.h"
@@ -618,7 +620,7 @@ tbbtrem(TBBT_NODE ** root, TBBT_NODE * node, VOIDP *kp)
             }
           else
             {   /* If no sub-tree heavier, pick at "random" for "better */
-                side = (0x10 & *(short *) &node) ? LEFT : RIGHT;    /* balance" */
+                side = (random() % 2) ? LEFT : RIGHT;    /* balance" */
             }
           leaf = tbbt_nbr(next = node, Other(side));
           par = leaf->Parent;
@@ -1035,4 +1037,3 @@ tbbt_shutdown(void)
       } /* end if */
   return (SUCCEED);
 }	/* end tbbt_shutdown() */
-
