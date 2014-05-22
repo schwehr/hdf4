@@ -1958,6 +1958,8 @@ static void test_mgr_image_b2b1(int flag)
 
 } /* end test_mgr_image_b2b1() */
 
+#if 0
+/* TODO: If test_mgr_image_chunk is not usable, then delete it. */
 static void test_mgr_image_chunk(int flag)
 {
     int32   cdims[2] = {1,1};    /* chunk dims */
@@ -2141,6 +2143,7 @@ static void test_mgr_image_chunk(int flag)
 #endif
 
 } /* end test_mgr_image_chunk() */
+#endif /* Unused test function. */
 
 /****************************************************************
 **
@@ -2631,27 +2634,6 @@ test_mgr_special(int flag)
     /* Output message about test being performed */
     MESSAGE(6, printf("Testing Multi-file Raster Special Element routines\n"););
 }   /* end test_mgr_special() */
-
-/****************************************************************
-**
-**  test_mgr_attr_old(): Multi-file Raster Attribute Test Routine
-** 
-**  VII. Atribute Functions
-**      A. GRattrinfo
-**      B. Read/Write Attributes
-**          1. GRsetattr
-**          2. GRgetattr
-**      C. GRfindattr
-** 
-****************************************************************/
-static void
-test_mgr_attr_old(int flag)
-{
-    /* Output message about test being performed */
-    MESSAGE(6, printf("Testing Multi-file Raster Attribute routines\n"););
-
-/* I believe that these are adequately tested in the test_mgr_image routine -QAK */
-}   /* end test_mgr_attr_old() */
 
 #define OLDRLEFILE  "test_files/8bit.dat"
 #define OLDGREYJPEGFILE  "test_files/greyjpeg.dat"
@@ -4090,4 +4072,3 @@ test_mgr(void)
     test_mgr_dup_images();
 
 }   /* test_mgr() */
-

@@ -26,7 +26,6 @@
 #define VG_LONGCLASS "Very long class name to classify all Vgroups with more than 64 characters in name"
 
 static void test_vglongnames(void);
-static void test_novgclass(void);
 
 static void
 test_vglongnames(void)

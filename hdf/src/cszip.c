@@ -44,8 +44,10 @@ PRIVATE int32 HCIcszip_init
 PRIVATE int32 HCIcszip_decode
             (compinfo_t * info, int32 length, uint8 *buf);
 
+#ifdef H4_HAVE_SZIP_ENCODER
 PRIVATE int32 HCIcszip_encode
             (compinfo_t * info, int32 length, const uint8 *buf);
+#endif
 
 PRIVATE int32 HCIcszip_term
             (compinfo_t * info);
@@ -358,11 +360,11 @@ HCIcszip_decode(compinfo_t * info, int32 length, uint8 *buf)
  EXAMPLES
  REVISION LOG
 --------------------------------------------------------------------------*/
+#ifdef H4_HAVE_SZIP_ENCODER
 PRIVATE int32
 HCIcszip_encode(compinfo_t * info, int32 length, const uint8 *buf)
 {
     CONSTR(FUNC, "HCIcszip_encode");
-#ifdef H4_HAVE_SZIP_ENCODER
     int bytes_per_pixel;
     comp_coder_szip_info_t *szip_info;    /* ptr to SZIP info */
     int32 buffer_size;
@@ -395,13 +397,8 @@ HCIcszip_encode(compinfo_t * info, int32 length, const uint8 *buf)
 
     return (SUCCEED);
 
-#else /* ifdef H4_HAVE_SZIP_ENCODER */
-
-    HRETURN_ERROR(DFE_CANTDECOMP, FAIL);
-
-#endif /* H4_HAVE_SZIP_ENCODER */
-
 }   /* end HCIcszip_encode() */
+#endif /* H4_HAVE_SZIP_ENCODER */
 
 /*--------------------------------------------------------------------------
  NAME

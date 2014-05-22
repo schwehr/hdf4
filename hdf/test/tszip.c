@@ -51,10 +51,10 @@
 /* 
  * Write/Read szip compressed image with 8-bit integer data
  */
-static void 
+#ifdef H4_HAVE_LIBSZ
+static void
 test_szip_RI8bit()
 {
-#ifdef H4_HAVE_LIBSZ
    /************************* Variable declaration **************************/
 
     intn  status;         /* status for functions returning an intn */
@@ -213,16 +213,16 @@ test_szip_RI8bit()
     status = Hclose (file_id);
     CHECK_VOID(status, FAIL, "Hclose");
 
-#endif
 }  /* end of test_szip_RI8bit */
+#endif /* H4_HAVE_LIBSZ */
 
 /* 
  * Write/Read szip compressed image with 16-bit integer data
  */
-static void 
+#ifdef H4_HAVE_LIBSZ
+static void
 test_szip_RI16bit()
 {
-#ifdef H4_HAVE_LIBSZ
    /************************* Variable declaration **************************/
 
     intn  status;         /* status for functions returning an intn */
@@ -380,16 +380,16 @@ test_szip_RI16bit()
     status = Hclose (file_id);
     CHECK_VOID(status, FAIL, "Hclose");
 
-#endif
 }  /* end of test_szip_RI16bit */
+#endif /* H4_HAVE_LIBSZ */
 
 /* 
  * Write/Read szip compressed image with 32-bit integer data
  */
-static void 
+#ifdef H4_HAVE_LIBSZ
+static void
 test_szip_RI32bit()
 {
-#ifdef H4_HAVE_LIBSZ
    /************************* Variable declaration **************************/
 
     intn  status;         /* status for functions returning an intn */
@@ -547,16 +547,16 @@ test_szip_RI32bit()
     status = Hclose (file_id);
     CHECK_VOID(status, FAIL, "Hclose");
 
-#endif
 }  /* end of test_szip_RI32bit */
+#endif /* H4_HAVE_LIBSZ */
 
 /* 
  * Write/Read szip compressed image with 32-bit floating point data
  */
-static void 
+#ifdef H4_HAVE_LIBSZ
+static void
 test_szip_RIfl32bit()
 {
-#ifdef H4_HAVE_LIBSZ
    /************************* Variable declaration **************************/
 
     intn  status;         /* status for functions returning an intn */
@@ -716,16 +716,16 @@ test_szip_RIfl32bit()
     status = Hclose (file_id);
     CHECK_VOID(status, FAIL, "Hclose");
 
-#endif
 }  /* end of test_szip_RIfl32bit */
+#endif /* H4_HAVE_LIBSZ */
 
 /* 
  * Write/Read szip compressed image with 64-bit floating point data
  */
-static void 
+#ifdef H4_HAVE_LIBSZ
+static void
 test_szip_RIfl64bit()
 {
-#ifdef H4_HAVE_LIBSZ
    /************************* Variable declaration **************************/
 
     intn  status;         /* status for functions returning an intn */
@@ -885,8 +885,8 @@ test_szip_RIfl64bit()
     status = Hclose (file_id);
     CHECK_VOID(status, FAIL, "Hclose");
 
-#endif
 }  /* end of test_szip_RIfl64bit */
+#endif /* H4_HAVE_LIBSZ */
 
 /*
 * This function tests GR chunking write/read operations for the
@@ -896,10 +896,10 @@ test_szip_RIfl64bit()
 #define  WIDTH_CH	10    /* number of columns in the image */
 #define  LENGTH_CH	 6    /* number of rows in the image */
 
-static void 
+#ifdef H4_HAVE_LIBSZ
+static void
 test_szip_chunk()
 {
-#ifdef H4_HAVE_LIBSZ
 
     /************************* Variable declaration **************************/
 
@@ -1116,8 +1116,8 @@ test_szip_chunk()
     status = Hclose (file_id);
     CHECK_VOID(status, FAIL, "Hclose");
 
-#endif
 }  /* end of test_szip_chunk */
+#endif /* H4_HAVE_LIBSZ */
 
 /****************************************************************
  * 

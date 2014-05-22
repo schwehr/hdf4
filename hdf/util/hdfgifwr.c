@@ -81,7 +81,6 @@ static long CountDown;
 static int  Interlace;
 
 #ifdef __STDC__
-static void putword(int, FILE *);
 static void compress(int, FILE *, byte *, int);
 static void output(int);
 static void cl_block(void);
@@ -90,7 +89,6 @@ static void char_init(void);
 static void char_out(int);
 static void flush_char(void);
 #else
-static void putword(), compress(), output(), cl_block(), cl_hash();
 static void char_init(), char_out(), flush_char();
 #endif
 
@@ -148,23 +146,6 @@ int hdfWriteGIF(fp, pic, ptype, w, h, rmap, gmap, bmap, pc2ncmap,  numcols, colo
   if (ferror(fp)) return -1;
   return (0);
 }
-
-
-
-
-/******************************/
-static void putword(w, fp)
-int w;
-FILE *fp;
-{
-  /* writes a 16-bit integer in GIF order (LSB first) */
-  
-  fputc(w &0xff, fp);
-    
-  fputc((w>>8)&0xff,fp);
-}
-
-
 
 
 /***********************************************************************/

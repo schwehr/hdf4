@@ -374,133 +374,6 @@ void set_chunk_def( comp_coder_t comp_type,
  */
 
 /*-------------------------------------------------------------------------
- * Function: cmp_gr
- *
- * Purpose: compare 2 GR images 
- *
- * Return: same as memcmp
- *
- * Programmer: Pedro Vicente, pvn@ncsa.uiuc.edu
- *
- * Date: September 03, 2003
- *
- *-------------------------------------------------------------------------
- */
-
-static 
-int cmp_gr(int32 ri1_id, int32 ri2_id)
-{
-    int32         dimsizes[2],   /* dimensions of an image */
-        n_comps,       /* number of components an image contains */
-        interlace_mode1,/* interlace mode of an image */ 
-        dtype,         /* number type of an image */
-        n_attrs;       /* number of attributes belong to an image */
-    int32         interlace_mode2;        
-    char          gr_name[H4_MAX_GR_NAME]; 
-    int           j, rank=2;
-    int32         start[2],       /* read start */
-        edges[2],       /* read edges */
-        numtype,        /* number type */
-        eltsz,          /* element size */
-        nelms,          /* number of elements */
-        data_size;
-    VOIDP         buf1=NULL, buf2=NULL;
-    int           cmp=-1;
-    
-    GRgetiminfo(ri1_id,gr_name,&n_comps,&dtype,&interlace_mode1,dimsizes,&n_attrs);
-    GRgetiminfo(ri2_id,gr_name,&n_comps,&dtype,&interlace_mode2,dimsizes,&n_attrs);
-    
-    printf( "Comparing GR <%s>: ", gr_name);
-    
-    
-    /*-------------------------------------------------------------------------
-    * match interlace 
-    * NOTE: GR images are always stored as pixel_interlace (0) on disk
-    *       that does not happen with images saved with the 
-    *       DF24 - Single-file 24-Bit Raster Image Interface,
-    *       where the interlace mode on disk can be 0, 1 or 2
-    *-------------------------------------------------------------------------
-    */
-    if ( interlace_mode1 != interlace_mode2 )
-    {
-        printf("Warning: different interlace mode: <%d> and <%d>",
-               interlace_mode1, interlace_mode2);
-        interlace_mode1=interlace_mode2;
-    }
-    
-    /*-------------------------------------------------------------------------
-    * check for data size before printing
-    *-------------------------------------------------------------------------
-    */
-    
-    /* compute the number of the bytes for each value. */
-    numtype = dtype & DFNT_MASK;
-    eltsz = DFKNTsize(numtype | DFNT_NATIVE);
-    
-    /* set edges of GR */
-    nelms=1;
-    for (j = 0; j < rank; j++) {
-        nelms   *= dimsizes[j];
-        edges[j] = dimsizes[j];
-        start[j] = 0;
-    }
-    
-    data_size = dimsizes[0]*dimsizes[1]*n_comps*eltsz;
-    
-    /*-------------------------------------------------------------------------
-    * read gr 1
-    *-------------------------------------------------------------------------
-    */
-    
-    /* alloc */
-    if ((buf1 = (VOIDP) HDmalloc(data_size)) == NULL) {
-        printf("Failed to allocate %d elements of size %d\n", nelms, eltsz);
-        goto out;
-    }
-    
-    
-    /* read data */
-    if (GRreadimage (ri1_id, start, NULL, edges, buf1) == FAIL) {
-        printf( "Could not read GR\n");
-        goto out;
-    }
-    
-    /*-------------------------------------------------------------------------
-    * read gr 2
-    *-------------------------------------------------------------------------
-    */
-    
-    /* alloc */
-    if ((buf2 = (VOIDP) HDmalloc(data_size)) == NULL) {
-        printf("Failed to allocate %d elements of size %d\n", nelms, eltsz);
-        goto out;
-    }
-    
-    /* read data */
-    if (GRreadimage (ri2_id, start, NULL, edges, buf2) == FAIL) {
-        printf( "Could not read GR\n");
-        goto out;
-    }
-    
-    cmp = HDmemcmp(buf1,buf2,data_size);
-    if (cmp!=0)
-        printf("Differences found\n");
-    else
-        printf("\n");
-    
-out:
-    /* terminate access to the GRs */
-    GRendaccess(ri1_id);
-    GRendaccess(ri2_id);
-    if (buf1)
-        free(buf1);
-    if (buf2)
-        free(buf2);
-    return cmp;
-    
-}
-
-/*-------------------------------------------------------------------------
  * Function: sds_verifiy_comp
  *
  * Purpose: utility function to verify compression for SDS_NAME
@@ -2267,6 +2140,7 @@ int add_pal(const char* fname)
  *
  *-------------------------------------------------------------------------
  */
+#ifdef H4_HAVE_LIBSZ
 static
 int add_sd_szip(const char *fname,       /* file name */
                  int32 file_id,           /* file ID */
@@ -2292,8 +2166,7 @@ int add_sd_szip(const char *fname,       /* file name */
 
     edges[0]=dim[0]; 
     edges[1]=dim[1];
-    
-#ifdef H4_HAVE_LIBSZ
+
     if (SZ_encoder_enabled()) {
         comp_type = COMP_CODE_SZIP;
         comp_info.szip.pixels_per_block = 2;
@@ -2305,10 +2178,7 @@ int add_sd_szip(const char *fname,       /* file name */
     } else {
         printf("Warning: SZIP encoding not available\n");
     }
-#else
-    printf("Warning: SZIP compression not available\n");
-#endif
-    
+
     /* create the SDS */
     sds_id = SDcreate (sd_id, sds_name, nt, rank, dim);
     if (sds_id < 0) {
@@ -2370,6 +2240,7 @@ fail:
     SDendaccess (sds_id);
     return FAIL;
 }
+#endif H4_HAVE_LIBSZ
 
 
 

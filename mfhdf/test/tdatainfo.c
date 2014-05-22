@@ -98,16 +98,6 @@ void free_info(t_hdf_datainfo_t *info) {
     }
 }
 
-/* This is used to temporarily verify results.  Will remove when finallized. */
-static void print_info(char* name, uintn info_count, t_hdf_datainfo_t data_info) {
-    int ii;
-
-    fprintf(stderr, "offset/length of '%s'\n", name);
-    for (ii = 0; ii < info_count; ii++)
-        fprintf(stderr, "%d: %d   %d\n", ii, data_info.offsets[ii],
-                data_info.lengths[ii]);
-}
-
 /* Calculates the number of values in an SDS using the dimensions and rank */
 static int32 comp_n_values(int32 rank, int32 *dimsizes) {
     int ii;
