@@ -26,14 +26,12 @@ ncgen_LDFLAGS = $(LT_STATIC_EXEC) $(AM_LDFLAGS)
 
 bin_PROGRAMS = ncgen
 
+noinst_PROGRAMS = ctest0
+
 if HDF_BUILD_NETCDF
 if HDF_BUILD_FORTRAN
-noinst_PROGRAMS = ctest0 ftest0
-else 
-noinst_PROGRAMS = ctest0
+noinst_PROGRAMS += ftest0
 endif
-else
-noinst_PROGRAMS = ctest0
 endif
 
 ## Information for building the "ncgen" program
@@ -72,6 +70,8 @@ check_PROGRAMS = ctest0
 if HDF_BUILD_NETCDF
 if HDF_BUILD_FORTRAN
 check_PROGRAMS += ftest0
+endif
+endif
 
 netcdf.inc:
 	ln -s $(top_builddir)/mfhdf/fortran/$@ .
@@ -79,8 +79,6 @@ netcdf.inc:
 ftest0$(EXEEXT):		ncgen$(EXEEXT) test0.cdl netcdf.inc
 	$(TESTS_ENVIRONMENT) ./ncgen -f -o ftest0.nc $(srcdir)/test0.cdl > test0.f
 	$(F77) $(FFLAGS) -o $@ test0.f $(LDFLAGS) $(SHLIBLOC) $(LIBS)
-endif
-endif
 
 ctest0$(EXEEXT):		ncgen$(EXEEXT) $(srcdir)/test0.cdl
 	$(TESTS_ENVIRONMENT) ./ncgen -c -o ctest0.nc $(srcdir)/test0.cdl > test0.c
