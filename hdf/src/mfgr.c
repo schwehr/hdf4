@@ -2741,7 +2741,6 @@ done:
 intn GRwriteimage(int32 riid,int32 start[2],int32 in_stride[2],int32 count[2],void * data)
 {
     CONSTR(FUNC, "GRwriteimage");   /* for HERROR */
-    int32 hdf_file_id;          /* HDF file ID */
     int32 stride[2];            /* pointer to the stride array */
     gr_info_t *gr_ptr;          /* ptr to the GR information for this grid */
     ri_info_t *ri_ptr;          /* ptr to the image to work with */
@@ -2787,7 +2786,6 @@ intn GRwriteimage(int32 riid,int32 start[2],int32 in_stride[2],int32 count[2],vo
     if (NULL == (ri_ptr = (ri_info_t *) HAatom_object(riid)))
         HGOTO_ERROR(DFE_RINOTFOUND, FAIL);
     gr_ptr=ri_ptr->gr_ptr;
-    hdf_file_id=gr_ptr->hdf_file_id;
 
     comp_type = COMP_CODE_NONE;
     scheme = ri_ptr->img_dim.comp_tag;
@@ -6010,7 +6008,6 @@ GRwritechunk(int32 riid,       /* IN: access aid to GR */
     int16      special;         /* Special code */
     int32      csize;           /* phsical chunk size */
     sp_info_block_t info_block; /* special info block */
-    uint32     byte_count;      /* bytes to write */
     int8       platnumsubclass; /* the machine type of the current platform */
     uintn      convert;         /* whether to convert or not */
     intn       i;
@@ -6110,10 +6107,6 @@ GRwritechunk(int32 riid,       /* IN: access aid to GR */
                       /* Get the size of the pixels in memory and on disk */
                       pixel_mem_size  =(uintn)(ri_ptr->img_dim.ncomps*DFKNTsize((ri_ptr->img_dim.nt | DFNT_NATIVE) & (~DFNT_LITEND)));
                       pixel_disk_size =(uintn)(ri_ptr->img_dim.ncomps*DFKNTsize(ri_ptr->img_dim.nt));
-
-                      /* adjust for data type size */
-                      /* csize *= pixel_mem_size; */
-                      byte_count = csize * pixel_mem_size;
 
                       /* figure out if data needs to be converted */
                       /* Get number-type and conversion information */
@@ -6230,7 +6223,6 @@ GRreadchunk(int32 riid,    /* IN: access aid to GR */
     int16      special;         /* Special code */
     int32      csize;           /* phsical chunk size */
     sp_info_block_t info_block; /* special info block */
-    uint32     byte_count;      /* bytes to read */
     int8       platnumsubclass; /* the machine type of the current platform */
     uintn      convert;         /* whether to convert or not */
     intn       i;
@@ -6239,7 +6231,6 @@ GRreadchunk(int32 riid,    /* IN: access aid to GR */
     comp_coder_t comp_type; 
     comp_info cinfo;
     intn       status=FAIL;
-    intn       switch_interlace = FALSE;/* whether the memory interlace needs to be switched around */
     intn       ret_value = SUCCEED;
 
 
@@ -6336,20 +6327,12 @@ GRreadchunk(int32 riid,    /* IN: access aid to GR */
                       pixel_mem_size  =(uintn)(ri_ptr->img_dim.ncomps*DFKNTsize((ri_ptr->img_dim.nt | DFNT_NATIVE) & (~DFNT_LITEND)));
                       pixel_disk_size =(uintn)(ri_ptr->img_dim.ncomps*DFKNTsize(ri_ptr->img_dim.nt));
 
-                      /* adjust for number type size */
-                      /* csize *= pixel_mem_size; */
-                      byte_count = csize * pixel_mem_size;
-
                       /* figure out if data needs to be converted */
                       /* Get number-type and conversion information */
                       if (FAIL ==(platnumsubclass = DFKgetPNSC(ri_ptr->img_dim.nt & (~DFNT_LITEND), DF_MT)))
                           HGOTO_ERROR(DFE_INTERNAL,FAIL);
                        convert = (ri_ptr->img_dim.file_nt_subclass != platnumsubclass) 
                                  ||  (pixel_mem_size != pixel_disk_size);  /* is conversion necessary? */
-
-                      /* check interlace */
-                      if(ri_ptr->img_dim.il != MFGR_INTERLACE_PIXEL)
-                          switch_interlace=TRUE;
 
                       /* read chunk in */
                       if(convert) 
@@ -6586,7 +6569,6 @@ GR2bmapped(int32 riid, intn *tobe_mapped, intn *name_generated)
     int32  ritype;    /* image's type */
     intn   special_type=0;  /* specialness of the image data */
     int32  file_id;    /* shortcut file id */
-    intn   status;
     intn   ret_value = SUCCEED;
 
     /* Clear error stack */
@@ -6620,7 +6602,8 @@ GR2bmapped(int32 riid, intn *tobe_mapped, intn *name_generated)
     else if (img_tag == DFTAG_RI || img_tag == DFTAG_CI)
     {
 	/* Get the image data's type */
-	status = GRgetiminfo(riid, NULL, NULL, &ritype, NULL, NULL, NULL);
+        /* status = */
+        GRgetiminfo(riid, NULL, NULL, &ritype, NULL, NULL, NULL);
 
 	/* If it is 8-bit, set flag to check further for special storage */
 	if (ritype == DFNT_UCHAR8 || ritype == DFNT_CHAR8 ||
@@ -6631,7 +6614,8 @@ GR2bmapped(int32 riid, intn *tobe_mapped, intn *name_generated)
 	    {
 		/* Make sure no specialness or only with RLE compression */
 		comp_coder_t comp_type=COMP_CODE_NONE;
-		status = GRgetcomptype(riid, &comp_type);
+		/* status = */
+                GRgetcomptype(riid, &comp_type);
 		if (comp_type == COMP_CODE_RLE || comp_type == COMP_CODE_NONE)
 		{
 		    special_type = GRIisspecial_type(file_id, img_tag, img_ref);

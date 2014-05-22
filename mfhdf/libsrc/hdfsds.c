@@ -199,7 +199,6 @@ hdf_read_ndgs(NC *handle)
     int32    aid1;
     uint16   ndgTag;
     uint16   ndgRef;
-    uint16   sddRef;
     uint16   lRef;
     uint16   uRef;
     uint16   fRef;
@@ -337,7 +336,7 @@ hdf_read_ndgs(NC *handle)
                       goto done;
                   }
             
-                sddRef = lRef = uRef = fRef = sRef = sdRef = 0;
+                lRef = uRef = fRef = sRef = sdRef = 0;
             
                 /* default number type is Float32 */
                 type    = NC_FLOAT; 
@@ -504,8 +503,7 @@ hdf_read_ndgs(NC *handle)
                                           }  /* scale machine type */
                                     }    /* Little Endian */
                               }
-                    
-                            sddRef = tmpRef;    /* prepare for a new dim var */
+
                             if (Hendaccess(aid1) == FAIL)
                               {
                                   ret_value = FAIL;

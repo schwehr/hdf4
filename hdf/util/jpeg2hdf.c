@@ -118,11 +118,9 @@ get_sof(FILE * f)
 /* Process a SOFn marker */
 {
     short       ci;
-    int         data_precision;
-
     (VOID) get_2bytes(f);
 
-    data_precision = jgetc(f);
+    /* data_precision = */ jgetc(f);
     image_height = get_2bytes(f);
     image_width = get_2bytes(f);
     num_components = jgetc(f);

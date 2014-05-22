@@ -224,7 +224,7 @@ SDgetattdatainfo(int32 id, int32 attrindex, int32 *offset, int32 *length)
     int32   ntype=0,  /* need these because SDattrinfo doesn't... */
             count=0;  /* ...take NULL pointers for not needed arguments */
     int     ii;
-    intn    status,  /* returned value */
+    intn
     found,  /* TRUE when attribute is found */
     ret_value = SUCCEED;
 
@@ -242,7 +242,8 @@ SDgetattdatainfo(int32 id, int32 attrindex, int32 *offset, int32 *length)
         HGOTO_ERROR(DFE_ARGS, FAIL);
 
     /* Get the attribute's name */
-    status = SDattrinfo(id, attrindex, attrname, &ntype, &count);
+    /* status = */
+    SDattrinfo(id, attrindex, attrname, &ntype, &count);
 
     /* Check if the id given is a file id, or SDS id, or dimension id, and get
        appropriate info structure */

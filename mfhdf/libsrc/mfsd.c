@@ -4341,12 +4341,12 @@ SDgetexternalfile(int32 id,       /* IN: dataset ID */
     if(var->data_ref) 
     {
 	int32 aid=-1;
-	int32 retcode=0;
 	sp_info_block_t info_block;    /* special info block */
 
 	/* Get the access id and then its special info */
 	aid = Hstartread(handle->hdf_file, var->data_tag, var->data_ref);
-	retcode = HDget_special_info(aid, &info_block);
+	/* retcode = */
+        HDget_special_info(aid, &info_block);
 
 	/* If the SDS has external element, return the external file info */
         if (info_block.key == SPECIAL_EXT)

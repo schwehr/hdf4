@@ -157,7 +157,6 @@ BYTE         **MemGif2;     /* GIF image file input FILE stream           */
 {
     register WORD i;        /* Loop counter                               */
     WORD tableSize;         /* Number of entries in the Local Color Table */
-	BYTE Interlace;         /* PackedField & 0x20 gives information on interlacing */
 	BYTE *TempPtr;
 	int	 ch , ch1;
 
@@ -194,8 +193,6 @@ BYTE         **MemGif2;     /* GIF image file input FILE stream           */
 	}
 	
 	GifImageDesc->PackedField = GifImageDesc->GIDDump[8];
-
-	Interlace = GifImageDesc->PackedField & 0x20;
 
     /* Check if a Local Color Table is present */
     if (GifImageDesc->PackedField & 0x80)
@@ -420,8 +417,3 @@ WORD *DSize;
 	
     return(ptr2);					/* Return a pointer to the sub-block data */
 }
-
-
-
-
-

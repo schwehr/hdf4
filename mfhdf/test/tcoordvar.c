@@ -294,7 +294,7 @@ static intn test_dim1_SDS2(void)
     float32 sds2_data[2][3] = {{0.1, 2.3, 4.5}, {4.5, 6.7, 8.9}};
     int32 dimsize[1], dimsize2[2];
     int32 sds1_id, sds2_id, file_id, dim_id, index;
-    int32 start=0, stride=1, stat;
+    int32 start=0, stride=1;
     int32 start2[2]={0,0}, stride2[2]={1,1};
     int32 scale1 [5] = {101,102,103,104,105}, scale1_out[5];
     int32 num_type, array_rank, attributes;
@@ -329,7 +329,7 @@ static intn test_dim1_SDS2(void)
     sds2_id = SDcreate(file_id, VAR2_NAME, DFNT_FLOAT32, 2, dimsize2);
     CHECK(sds2_id, FAIL, "SDcreate");
 
-    stat = SDwritedata(sds2_id, start2, stride2, dimsize2, sds2_data);
+    status = SDwritedata(sds2_id, start2, stride2, dimsize2, sds2_data);
     CHECK(status, FAIL, "SDwritedata");
 
     status = SDendaccess(sds2_id);

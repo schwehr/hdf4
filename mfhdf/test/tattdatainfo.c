@@ -598,12 +598,11 @@ intn add_sdsSDG_annotations()
                 descris[MAXLEN_DESC];
     uint8       pal[768];
     uint16      refnum;
-    int32       ret;
     intn        rank;
     int         j;
     int32       dimsizes[2];
     float      *data;
-    intn num_errs=0;
+    /* intn num_errs=0; */
 
 /* set up object labels and descriptions */
 
@@ -622,20 +621,20 @@ intn add_sdsSDG_annotations()
 
     gen2Dfloat(ROWS, COLS, data);
 
-    ret = DFSDsetdims(2, dimsizes);
+    DFSDsetdims(2, dimsizes);
 
 /********  Write labels and descriptions *********/
     for (j = 0; j < REPS; j++)
       {
 
           /* write out scientific data set */
-          ret = DFSDadddata(DFAN_SDG_FILE, 2, dimsizes, (VOIDP) data);
-
+          DFSDadddata(DFAN_SDG_FILE, 2, dimsizes, (VOIDP) data);
+          /* TODO: Why the braces without an if? */
             {   /* write out annotations for 2 out of every 3 */
                 refnum = DFSDlastref();
-                ret = DFANputlabel(DFAN_SDG_FILE, DFTAG_SDG, refnum, labsds);
-                ret = DFANputdesc(DFAN_SDG_FILE, DFTAG_SDG, refnum,
-                                  descsds, (int32)HDstrlen(descsds));
+                DFANputlabel(DFAN_SDG_FILE, DFTAG_SDG, refnum, labsds);
+                DFANputdesc(DFAN_SDG_FILE, DFTAG_SDG, refnum,
+                            descsds, (int32)HDstrlen(descsds));
             }
       }
 
@@ -643,11 +642,11 @@ intn add_sdsSDG_annotations()
 
     for (j = 0; j < REPS; j++)
       {
-          ret = DFSDgetdims(DFAN_SDG_FILE, &rank, dimsizes, 3);
+          DFSDgetdims(DFAN_SDG_FILE, &rank, dimsizes, 3);
           refnum = DFSDlastref();
 
           if ((j % 3) != 0)     /* read in annotations for 2 out of every 3 */
-              num_errs = check_lab_desc(DFAN_SDG_FILE, DFTAG_SDG, refnum, labsds, descsds);
+            /* num_errs = */ check_lab_desc(DFAN_SDG_FILE, DFTAG_SDG, refnum, labsds, descsds);
       }
 
     HDfree((VOIDP) data);

@@ -40,7 +40,7 @@ test_rank0()
     comp_info c_info;		/* compression information structure */
     int32     comp_flag;	/* compression flag */
     HDF_CHUNK_DEF c_def;	/* Chunking definitions */
-    int32     buf[Y_LENGTH][X_LENGTH], buf_dup[Y_LENGTH][X_LENGTH];
+    int32     buf[Y_LENGTH][X_LENGTH] /* , buf_dup[Y_LENGTH][X_LENGTH]*/;
     intn      i, j, status;
     int32     status_32;
     intn      num_errs = 0;	/* number of errors so far */
@@ -93,7 +93,7 @@ test_rank0()
         for (i=0; i<X_LENGTH; i++)
 	{
 	    buf[j][i] = i;
-	    buf_dup[j][i] = i;
+	    /* buf_dup[j][i] = i; */
 	}
     }
     /* Select the first dataset */

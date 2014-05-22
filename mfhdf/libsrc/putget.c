@@ -2015,7 +2015,6 @@ const long *edges ;
 {
 	const long *edp, *orp ;
 	unsigned long *boundary, *shp ;
-	int partial=0;
 
 	if( IS_RECVAR(vp) )
 	{
@@ -2047,8 +2046,7 @@ const long *edges ;
                matching dimension */
 	    if(*edp < *shp )
 	    {
-		partial=1;
-		break ;
+		break;
 		/* Why do we want to break here?  What if the later edge is out
 		   of limit and we break out as soon as a smaller edge is reached? -BMR */
 	    }

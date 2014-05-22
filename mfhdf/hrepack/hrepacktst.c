@@ -180,7 +180,6 @@ static
 int vg_getngrpdep( HFILEID f)
 {
     int32       vg, vgt;
-    int32       vgotag, vgoref;
     int32       vgid = -1;
     int32       vsid = -1;
     int32       vsno = 0;
@@ -209,9 +208,10 @@ int vg_getngrpdep( HFILEID f)
         vgname = (char *) HDmalloc(sizeof(char) * (name_len+1));
 
         Vinquire(vg, &n, vgname);
-        vgotag = VQuerytag(vg);
-        vgoref = VQueryref(vg);
-       
+        /* TODO: Do these queries have side effects or can they be removed? */
+        /* vgotag = */ VQuerytag(vg);
+        /* vgoref = */ VQueryref(vg);
+
         for (i = 0; i < Vntagrefs(vg); i++)
         {
             Vgettagref(vg, i, &vstag, &vsid);
@@ -227,10 +227,10 @@ int vg_getngrpdep( HFILEID f)
                 }
                 
                 Vinquire(vgt, &ne, vgname);
-                
-                vgotag = VQuerytag(vgt);
-                vgoref = VQueryref(vgt);
-                
+                /* TODO: Do these queries have side effects or can they be removed? */
+                /* vgotag = */ VQuerytag(vgt);
+                /*vgoref = */ VQueryref(vgt);
+
                 Vdetach(vgt);
 
                 nlnk++;

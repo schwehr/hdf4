@@ -112,15 +112,12 @@ int hdfWriteGIF(fp, pic, ptype, w, h, rmap, gmap, bmap, pc2ncmap,  numcols, colo
     int   numcols, colorstyle;
     int	  BitsPerPixel;
 {
-  int   RWidth, RHeight;
-  int   LeftOfs, TopOfs;
-  int   ColorMapSize, InitCodeSize, Background;
+  int   InitCodeSize;
   int   i;
   byte *pic8;
   pic8 = pic;
   
   Interlace = 0;
-  Background = 0;
   
   for (i=0; i<256; i++) { 
 	  pc2nc[i] = pc2ncmap[i];
@@ -129,11 +126,9 @@ int hdfWriteGIF(fp, pic, ptype, w, h, rmap, gmap, bmap, pc2ncmap,  numcols, colo
 	  b1[i] = bmap[i];
   }
 
-  ColorMapSize = 1 << BitsPerPixel;
-	
-  RWidth  = Width  = w;
-  RHeight = Height = h;
-  LeftOfs = TopOfs = 0;
+
+  Width  = w;
+  Height = h;
 	
   CountDown = w * h;    /* # of pixels we'll be doing */
 
@@ -528,6 +523,3 @@ static void flush_char()
     a_count = 0;
   }
 }	
-
-
-

@@ -429,13 +429,12 @@ test_append_vs()
 
     /* Make another simple vdata to cause linked-blocks */
     {
-	int32 vd2_ref;
-
 	for (rec_num = 0; rec_num < N_RECORDS; rec_num++)
 	    data_buf0[rec_num][0] = 10 + rec_num;
 
 	/* Create and write to another very simple vdata */
-	vd2_ref = VHstoredata(fid, "Field 1", (const uint8 *)data_buf0, N_RECORDS, DFNT_INT32, "Another One Field One Order", "Very Simple Vdata");
+        /* vd2_ref = */
+        VHstoredata(fid, "Field 1", (const uint8 *)data_buf0, N_RECORDS, DFNT_INT32, "Another One Field One Order", "Very Simple Vdata");
     }
 
     /* Make up the second batch of data for the appendable vdata */

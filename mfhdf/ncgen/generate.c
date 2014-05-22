@@ -237,7 +237,7 @@ gen_c(filename)
     for (idim = 0; idim < ndims; idim++) {
 	if (dims[idim].size == NC_UNLIMITED)
 	  sprintf(stmnt,
-		  "   %s_dim = ncdimdef(ncid, \"%s\", NC_UNLIMITED);",
+		  "   /* %s_dim = */ ncdimdef(ncid, \"%s\", NC_UNLIMITED);",
 		  dims[idim].name,
 		  dims[idim].name);
 	else

@@ -31,7 +31,6 @@ main()
     int32   dim2_sizes[2];	/* sizes of the 2-dim SDS dimensions */
     int32   dim3_sizes[3];	/* sizes of the 3-dim SDS dimensions */
     int32   start2[2], start3[3];	/* start arrays for both SDSs */
-    intn    status;
     int32   dim_id, dim_index,	/* dimension id and index */
 	    size, data_type, 	/* dimension's size and data type */
 	    nattrs;		/* number of attributes */
@@ -95,18 +94,18 @@ main()
     sds2_id = SDcreate (sd3_id, SDS2_NAME, DFNT_FLOAT32, RANK3, dim3_sizes);
 
     /* Write data to the SDSs */
-    status = SDwritedata(sds1_id, start2, NULL, dim2_sizes, (VOIDP)in2_data);
-    status = SDwritedata(sds2_id, start3, NULL, dim3_sizes, (VOIDP)in3_data);
+    SDwritedata(sds1_id, start2, NULL, dim2_sizes, (VOIDP)in2_data);
+    SDwritedata(sds2_id, start3, NULL, dim3_sizes, (VOIDP)in3_data);
 
     /*
     * Terminate access to the data sets.
     */
-    status = SDendaccess (sds1_id);
-    status = SDendaccess (sds2_id);
+    SDendaccess (sds1_id);
+    SDendaccess (sds2_id);
 
     /*
     * Terminate access to the SD interface and close the files.
     */
-    status = SDend (sd2_id);
-    status = SDend (sd3_id);
+    SDend (sd2_id);
+    SDend (sd3_id);
 }

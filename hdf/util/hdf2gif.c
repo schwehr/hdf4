@@ -82,7 +82,6 @@ int main(int argc , char **argv) {
 	int loop_times; /* number of times to loop, i'm going to treat it as a yes or no */
 	
 	BYTE* b;
-	BYTE  x;
 	
 	BYTE  GlobalPalette[256][3];
 	BYTE  Red[256];
@@ -90,13 +89,10 @@ int main(int argc , char **argv) {
 	BYTE  Blue[256];
 	
 	int   RWidth, RHeight;
-	int   LeftOfs, TopOfs;
 	int   ColorMapSize, InitCodeSize, Background, BitsPerPixel;
 	int   j,nc;
-	int	  w,h;
+	int   w;
 	int   numcols = 256;
-	int   CountDown;
-	int   curx , cury;
 	int   time_out;
 	
 	BYTE pc2nc[256] , r1[256] , g1[256] , b1[256];
@@ -114,7 +110,7 @@ int main(int argc , char **argv) {
 		time_out = 10; 
 	
 	/* Do Endian Order testing and set Endian Order */
-	x = 0x0001;
+	/* x = 0x0001; */
 	b = (BYTE *) &w;
 	EndianOrder = (b[0] ? 1:0);
 	
@@ -190,7 +186,6 @@ int main(int argc , char **argv) {
 		Image = (BYTE *)malloc(dim_sizes[0] * dim_sizes[1]);
 		status = GRreadimage(ri_id , start , stride , dim_sizes , Image);
 		w = dim_sizes[0];
-		h = dim_sizes[1];
 		
 		/* If the first image does not have a palette, I make my own global color table
 		** Obviously this is not the best thing to do, better steps would be:
@@ -239,14 +234,9 @@ int main(int argc , char **argv) {
 		
 		RWidth  = dim_sizes[0];
 		RHeight = dim_sizes[1];
-		LeftOfs = TopOfs = 0;
-		
-		CountDown = w * h;    /* # of pixels we'll be doing */
 		
 		if (BitsPerPixel <= 1) InitCodeSize = 2;
 		else InitCodeSize = BitsPerPixel;
-		
-		curx = cury = 0;
 		
 		if (!fpGif) {
 			fprintf(stderr,  "WriteGIF: file not open for writing\n" );

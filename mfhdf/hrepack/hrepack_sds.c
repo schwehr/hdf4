@@ -625,8 +625,7 @@ int copy_sds(int32 sd_in,
            /* stripmine info */
            int32         sm_size[H4_MAX_VAR_DIMS];   /*stripmine size */
            int32         sm_nbytes;               /*bytes per stripmine */
-           int32         sm_nelmts;               /*elements per stripmine*/
-           
+
            /* hyperslab info */
            int32         hs_offset[H4_MAX_VAR_DIMS]; /*starting offset */
            int32         hs_size[H4_MAX_VAR_DIMS];   /*size this pass */
@@ -646,9 +645,7 @@ int copy_sds(int32 sd_in,
            }
            
            sm_buf = HDmalloc((size_t)sm_nbytes);
-                      
-           sm_nelmts = sm_nbytes / p_type_nbytes;
-           
+
            /* the stripmine loop */
            memset(hs_offset, 0, sizeof hs_offset);
            
@@ -1060,4 +1057,3 @@ void print_info( int chunk_flags,
         ratio,                                         /*ratio */
         path);                                         /*name*/
 }
-
