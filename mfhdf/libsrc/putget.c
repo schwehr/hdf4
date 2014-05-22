@@ -86,6 +86,7 @@ const char *caller;
     nc_api = strstr(caller, "nc");
     if (nc_api == caller)
         return TRUE;
+    return FALSE;
 }
 
 /*
