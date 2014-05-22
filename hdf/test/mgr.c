@@ -3750,7 +3750,7 @@ test_mgr_chunkwr_pixel(int flag)
          dim_sizes[2],   /* dimension sizes of the image array */
          interlace_mode, /* interlace mode of the image */
          data_type,      /* data type of the image data */
-         comp_flag,      /* compression flag */
+         comp_flag = 0,  /* compression flag */
          index,
          i;
    int32 start[2],

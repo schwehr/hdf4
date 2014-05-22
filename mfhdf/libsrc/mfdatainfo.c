@@ -750,7 +750,7 @@ intn SDgetanndatainfo(int32 sdsid, ann_type annot_type, uintn size, int32* offse
             n_dlabels = 0,  /* number of object labels */
             n_ddescs = 0;  /* number of file descriptions */
     uint16  elem_tag, elem_ref; /* tag/ref of dataset's NDG */
-    intn    num_annots,    /* number of annotation of requested type */
+    intn    num_annots = 0,  /* number of annotation of requested type */
     ii,
     ret_value = 0;
 

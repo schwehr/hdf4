@@ -6566,7 +6566,7 @@ GR2bmapped(int32 riid, intn *tobe_mapped, intn *name_generated)
     ri_info_t *ri_ptr;          /* ptr to the image to work with */
     intn   should_map = FALSE;  /* TRUE if the image should be mapped */
     uint16 img_tag, img_ref;  /* shortcuts image's tag/ref */
-    int32  ritype;    /* image's type */
+    int32  ritype=0;    /* image's type */
     intn   special_type=0;  /* specialness of the image data */
     int32  file_id;    /* shortcut file id */
     intn   ret_value = SUCCEED;

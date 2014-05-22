@@ -1312,9 +1312,9 @@ this routine */
             {
                 int32 buf_size = where;
                 int32 chunk_size;
-		int32 tempbuf_size;	/* size to allocate buffer tBuf */
+		int32 tempbuf_size = 0;	/* size to allocate buffer tBuf */
                 uint8 *write_buf = NULL;
-                uint32 fill_count;	/* number of fill values */
+                uint32 fill_count = 0;	/* number of fill values */
 
 		/* this block is to work around the failure caused by
 		   allocating a large chunk for the temporary buffers.

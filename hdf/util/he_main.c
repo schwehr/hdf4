@@ -708,7 +708,7 @@ int
 writeGrp(char *file)
 {
     int i;
-    uint16      ref;
+    uint16      ref = 0;
     int         grp;
     int         elt;
     int         ret;

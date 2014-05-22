@@ -50,7 +50,8 @@ int  copy_gr(int32 infile_id,
              list_table_t *list_tbl)
 {
     int32         ri_id,         /* raster image identifier */
-        ri_out,        /* raster image identifier */
+        /* WARNING: Should ri_out default to 0 or FAIL? */
+        ri_out = FAIL,        /* raster image identifier */
         ri_index,      /* index of a image */
         dimsizes[2],   /* dimensions of an image */
         n_comps,       /* number of components an image contains */
@@ -660,6 +661,3 @@ int copy_gr_attrs(int32 ri_id,
     
     return 1;
 }
-
-
-

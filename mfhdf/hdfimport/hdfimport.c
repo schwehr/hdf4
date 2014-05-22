@@ -1450,7 +1450,7 @@ static int
 gscale(struct infilesformat infile_info, struct Input *in, FILE *strm, int *is_scale)
 {
     int         i;
-    int32       hdfdims[3];     /* order: ZYX or YX */
+    int32       hdfdims[3] = {0, 0, 0};     /* order: ZYX or YX */
 
     const char *err1 = "Unable to get axis scale from file: %s.\n";
 
@@ -3008,9 +3008,10 @@ process(struct Options *opt)
     int         is_maxmin;
     int         is_scale;
     int32       len;
-    FILE       *strm;
+    FILE       *strm = NULL;
     int32       hdf;
-    int32 	sd_id, sds_id;
+    /* WARNING: Should sds_id default to 0 or FAIL? */
+    int32 	sd_id, sds_id = FAIL;
     int32 	start3[3], edges3[3], start2[2], edges2[2];
     int32       dim_index = 0, dim_id;
     
@@ -3669,24 +3670,3 @@ usage(char *name)
 
     return;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -89,7 +89,7 @@ static intn test_dim1_SDS1(void)
     float32 sds1_data[] = {0.1, 2.3, 4.5, 6.7, 8.9};
     float32 out_data[5];
     int32 dimsize[1];
-    int32 sds_id, file_id, dim_id, index;
+    int32 sds_id, file_id, dim_id, index = 0;
     int32 start=0, stride=1;
     int32 scale1 [5] = {101,102,103,104,105}, scale1_out[5];
     int32 num_type, array_rank, count;
@@ -175,6 +175,7 @@ static intn test_dim1_SDS1(void)
 		VERIFY(index, 0, "SDnametoindices");
 	    }
 	}
+        /* WARNING: What should index be? */
     }
 
     sds_id = SDselect(file_id, index);

@@ -990,7 +990,7 @@ intn VSfpack(int32 vsid, intn packtype, const char *fields_in_buf,
        intn n;       /* number of fields in buf     */
        int32 *idx;  /* index of buf fields in vdata */
        int32 *offs; /* offset of buf fields in buf */
-    }  blist;
+    } blist = {0, NULL, NULL};
 
     if (HAatom_group(vsid)!=VSIDGROUP)
         HGOTO_ERROR(DFE_ARGS, FAIL);
