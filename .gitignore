@@ -53,3 +53,6 @@ mfhdf/test/Makefile
 mfhdf/test/testmfhdf.sh
 mfhdf/xdr/Makefile
 patches
+*.chklog
+*.chkexe
+*bugzilla*
