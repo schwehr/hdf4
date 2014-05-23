@@ -1960,13 +1960,14 @@ gtype(char *infile, struct Input *in, FILE **strm)
 		     !HDmemcmp("fp64", buf, 4))
 	      {
 			in->is_fp64 = TRUE;
-			if (in->outtype != FP_64)
+			if (in->outtype != FP_64) {
 				if (in->outtype != NO_NE)
 				{
 					(void) fprintf(stderr, err4, infile);
 					goto err;		
 				}
 				else in->outtype = FP_32;
+                        }
 	      }
 	    else
 	      {

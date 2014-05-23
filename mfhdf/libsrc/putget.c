@@ -2460,12 +2460,13 @@ void *values;		/* buffer to be filled */
 
     /* Find user-defined fill-value and fill the buffer with it */
     attr = NC_findattr(&vp->attrs, _FillValue);
-    if(attr != NULL)
+    if(attr != NULL) {
 	if (HDmemfill(values,(*attr)->data->values,vp->szof,buf_size) == NULL)
 	    return(-1);
     /* If no user-defined fill-value, fill the buffer with default fill-value */
-    else
+    } else {
 	NC_arrayfill(values, buf_size * vp->szof, vp->type);
+    }
     return 0;
 }
 

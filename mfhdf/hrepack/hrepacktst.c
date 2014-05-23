@@ -2076,7 +2076,7 @@ int add_file_an(int32 file_id)
     }
     
     /* Terminate access to the AN interface */
-    if (ANend (an_id)==FAIL==FAIL){
+    if (ANend (an_id)==FAIL){
         printf( "Could not end AN\n");
         return FAIL;
     }

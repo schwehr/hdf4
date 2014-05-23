@@ -53,7 +53,6 @@ test_ncvarget_unlim(path)
     int nerrs = 0;
     static char pname[] = "test_ncvarget_unlim";
     
-    int status;
     int ncid;
     int var_id;
     float a[2][3];
@@ -78,8 +77,8 @@ test_ncvarget_unlim(path)
         count[0] = 12;
         count[1] = 3;
         count[2] = 2;
-	
-        if(status = ncvarget (ncid, var_id, start, count, val) == -1) {
+
+        if(ncvarget (ncid, var_id, start, count, val) == -1) {
            error("%s: ncvarget failed for variable b in ", pname);
            ncclose(ncid);
            return;
@@ -103,8 +102,8 @@ test_ncvarget_unlim(path)
         start[1] = 0;
         count[0] = 2;
         count[1] = 3;
-	
-        if(status = ncvarget (ncid, var_id, start, count, a) == -1) {
+
+        if(ncvarget (ncid, var_id, start, count, a) == -1) {
            error("%s: ncvarget failed for variable a in ", pname);
            ncclose(ncid);
            return;
@@ -125,8 +124,8 @@ test_ncvarget_unlim(path)
 	var_id = ncvarid( ncid, "date");
         start[0] = 0;
         count[0] = 12;
-	
-        if(status = ncvarget (ncid, var_id, start, count, date) == -1) {
+
+        if(ncvarget (ncid, var_id, start, count, date) == -1) {
            error("%s: ncvarget failed for variable date in ", pname);
            ncclose(ncid);
            return;
@@ -144,8 +143,8 @@ test_ncvarget_unlim(path)
 	var_id = ncvarid( ncid, "time");
         start[0] = 0;
         count[0] = 12;
-	
-        if(status = ncvarget (ncid, var_id, start, count, time) == -1) {
+
+        if(ncvarget (ncid, var_id, start, count, time) == -1) {
            error("%s: ncvarget failed varaible time in ", pname);
            ncclose(ncid);
            return;
@@ -158,7 +157,7 @@ test_ncvarget_unlim(path)
              }
         }
 
-	status = ncclose(ncid);
+	ncclose(ncid);
 
 
     if (nerrs > 0)

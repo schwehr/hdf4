@@ -2813,7 +2813,8 @@ intn GRwriteimage(int32 riid,int32 start[2],int32 in_stride[2],int32 count[2],vo
     {
         /* Check that the compression encoder is available */
         HCget_config_info(comp_type, &comp_config);
-        if ((comp_config & COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED) == 0) {
+        /* TODO: Is this really the right grouping of parens for the bit ops?*/
+        if ((comp_config & (COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED)) == 0) {
             /* coder not present?? */
              HGOTO_ERROR(DFE_BADCODER,FAIL); 
         }
@@ -3292,7 +3293,8 @@ intn GRreadimage(int32 riid,int32 start[2],int32 in_stride[2],int32 count[2],voi
     {   /* This is reading, why do we need encoder? -BMR */
 	/* Check that the compression encoder is available */
 	HCget_config_info(comp_type, &comp_config);
-	if ((comp_config & COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED) == 0)
+        /* TODO: Is this really the right grouping of parens for the bit ops?*/
+	if ((comp_config & (COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED)) == 0)
 	{ /* coder not present?? */
 	    HGOTO_ERROR(DFE_BADCODER,FAIL); 
 	}
@@ -4406,7 +4408,8 @@ intn GRsetcompress(int32 riid,comp_coder_t comp_type,comp_info *cinfo)
 
     /* Check that the compression method is enabled */
     HCget_config_info(comp_type, &comp_config);
-    if ((comp_config & COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED) == 0) {
+    /* TODO: Is this really the right grouping of parens for the bit ops?*/
+    if ((comp_config & (COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED)) == 0) {
   /* coder not present?? */
       HGOTO_ERROR(DFE_BADCODER, FAIL);
     }
@@ -5656,7 +5659,8 @@ GRsetchunk(int32 riid,              /* IN: raster access id */
 
     /* Check that the compression encoder is available */
     HCget_config_info((comp_coder_t )(cdef->comp.comp_type), &comp_config);
-    if ((comp_config & COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED) == 0) {
+    /* TODO: Is this really the right grouping of parens for the bit ops?*/
+    if ((comp_config & (COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED)) == 0) {
     /* coder not present?? */
               HGOTO_ERROR(DFE_BADCODER,FAIL); 
     }
@@ -6079,7 +6083,8 @@ GRwritechunk(int32 riid,       /* IN: access aid to GR */
     {
         /* Check that the compression encoder is available */
         HCget_config_info(comp_type, &comp_config);
-        if ((comp_config & COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED) == 0) {
+        /* TODO: Is this really the right grouping of parens for the bit ops?*/
+        if ((comp_config & (COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED)) == 0) {
             /* coder not present?? */
              HGOTO_ERROR(DFE_BADCODER,FAIL); 
         }
@@ -6299,7 +6304,7 @@ GRreadchunk(int32 riid,    /* IN: access aid to GR */
     {   /* BMR: this is reading, why do we need encoder? */
 	/* Check that the compression encoder is available */
 	HCget_config_info(comp_type, &comp_config);
-	if ((comp_config & COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED) == 0) {
+	if (((comp_config & COMP_DECODER_ENABLED)|COMP_ENCODER_ENABLED) == 0) {
     /* coder not present?? */
          HGOTO_ERROR(DFE_BADCODER,FAIL); 
       }

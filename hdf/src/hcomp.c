@@ -169,7 +169,9 @@ HCIinit_coder(int16 acc_mode, comp_coder_info_t * cinfo, comp_coder_t coder_type
     CONSTR(FUNC, "HCIinit_coder");  /* for HERROR */
 
     HCget_config_info(coder_type, &comp_info);
-    if ((comp_info & COMP_DECODER_ENABLED|COMP_ENCODER_ENABLED) == 0) {
+    /* TODO: Is this really the right grouping of parens for the bit ops?*/
+    /* WARNING: Tautology with COMP_ENCODER_ENABLED begin 2? */
+    if (((comp_info & COMP_DECODER_ENABLED) | COMP_ENCODER_ENABLED) == 0) {
 	/* coder not present?? */
               HRETURN_ERROR(DFE_BADCODER, FAIL)
     }
@@ -1689,10 +1691,12 @@ HCget_config_info( comp_coder_t coder_type,  /* IN: compression type */
           case COMP_CODE_IMCOMP:    /* IMCOMP no longer supported */
                 *compression_config_info = 0;
               break;
+          /* TODO: Someone really needs to sort this out! */
           /* This block doesn't look intentional, for there is no "break;"
              before case COMP_CODE_RLE:, which means *compression_config_info
              was reassigned to something else even though it is "case
-             COMP_CODE_NONE:"  When I added "break;" for "case COMP_CODE_NONE:",             some tests failed.  It needs to be checked out.-BMR, Jul 16, 2012*/
+             COMP_CODE_NONE:"  When I added "break;" for "case COMP_CODE_NONE:",
+             some tests failed.  It needs to be checked out.-BMR, Jul 16, 2012*/
           case COMP_CODE_NONE:      /* "none" (i.e. no) encoding */
 		*compression_config_info = 0;
           case COMP_CODE_RLE:   /* Run-length encoding */

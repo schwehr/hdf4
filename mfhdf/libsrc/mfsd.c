@@ -3895,22 +3895,23 @@ SDgetdimstrs(int32 id,  /* IN:  dataset ID */
           for(ii = 0 ; ii < handle->vars->count ; ii++, dp++) 
             {
 	      /* eliminate vars with rank > 1, coord vars only have rank 1 */
-	      if((*dp)->assoc->count == 1) 
-                  if( namelen == (*dp)->name->len 
-                    && HDstrncmp(name, (*dp)->name->values, HDstrlen(name)) == 0)
-	      /* because a dim was given, make sure that this is a coord var */
-		  /* if it is an SDS, the function will fail */
-		  if ((*dp)->var_type == IS_SDSVAR)
+	      if((*dp)->assoc->count == 1) {
+                  if( namelen == (*dp)->name->len
+                      && HDstrncmp(name, (*dp)->name->values, HDstrlen(name)) == 0) {
+                    /* because a dim was given, make sure that this is a coord var */
+                    /* if it is an SDS, the function will fail */
+                    if ((*dp)->var_type == IS_SDSVAR) {
 		      HGOTO_ERROR(DFE_ARGS, FAIL)
-	          /* only proceed if this variable is a coordinate var or when
-		      its status is unknown due to its being created prior to
-		      the fix of bugzilla 624 - BMR - 05/14/2007 */
-		  else
-		  /* i.e., (*dp)->var_type == IS_CRDVAR || 
-			   (*dp)->var_type == UNKNOWN) */ 
-                  {
+                      /* only proceed if this variable is a coordinate var or when
+                         its status is unknown due to its being created prior to
+                         the fix of bugzilla 624 - BMR - 05/14/2007 */
+                    } else {
+                      /* i.e., (*dp)->var_type == IS_CRDVAR ||
+                         (*dp)->var_type == UNKNOWN) */
                       var = (*dp);
+                    }
                   }
+              }
             }
       }
 
