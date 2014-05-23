@@ -885,7 +885,8 @@ HLgetdatainfo(int32 file_id,
        of the non-NULL arrays provided */
     while (link_info != NULL &&
 	(info_count == 0 ||	/* case of offset/length arrays being NULL */
-	 num_data_blocks < info_count))
+	 (num_data_blocks < 0 || (uintn)num_data_blocks < info_count)
+         ))
     {
         uint16 next_ref = link_info->nextref; /* shortcut */
 
@@ -2028,4 +2029,3 @@ done:
   /* Normal function cleanup */
     return ret_value;
 }       /* end HLgetblockinfo */
-

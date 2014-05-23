@@ -1136,7 +1136,7 @@ VPgetinfo(HFILEID f,  /* IN: file handle */
 {
     VGROUP         *vg = NULL;
 /*  intn          len;    intn mismatches Vgbufsize type -- uint32 */
-    size_t          len;
+    int32          len;
     VGROUP *ret_value = NULL; /* FAIL */
     CONSTR(FUNC, "VPgetinfo");
 
@@ -1146,8 +1146,9 @@ VPgetinfo(HFILEID f,  /* IN: file handle */
     /* Find out how long the VGroup information is */
     if (( len = Hlength(f, DFTAG_VG, (uint16) ref)) == FAIL)
         HGOTO_ERROR(DFE_INTERNAL,NULL);
- 
-    if(len > Vgbufsize)
+
+    /* TODO: make sure this int32 case is safe. */
+    if(len > (int32)Vgbufsize)
       {
         Vgbufsize = len;
 
@@ -3483,7 +3484,9 @@ Vgetvgroups(int32 id,		/* IN: file id or vgroup id */
     CONSTR(FUNC, "Vgetvgroups");
     vginstance_t *vg_inst = NULL;
     int32    vg_ref;
-    intn     nactual_vgs, user_vgs, ii;
+    uintn     nactual_vgs;
+    uintn     user_vgs;
+    intn     ii;
     VGROUP  *vg = NULL;
     intn     ret_value = SUCCEED;
 

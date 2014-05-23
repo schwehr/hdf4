@@ -316,7 +316,7 @@ test_vgmixedattrs()
     intn  status_32;	/* returned status for functions returning an int32! */
 
     /* Attributes to be set for various elements */
-    uint32 attr1[4] = {4, 5, 6, 7}; /* copied from test_vvsattrs, only to
+    int32 attr1[4] = {4, 5, 6, 7}; /* copied from test_vvsattrs, only to
 					verify previously added attribute */
     char attr2[12] = {'V','G','0',' ','n','e','w','a','t','t','r','\0'};
     char attr3[13] = {'V','G','0',' ','o','l','d','a','t','t','r','0','\0'};

@@ -32,7 +32,8 @@ test_macros(void)
 	int16 new16, old16, str16;
 	uint32 new32u, old32u, str32u;
 	int32 new32, old32, str32;
-	int i,j;
+	size_t i;
+	int j;
 	int errors1, errors2, errors3, errors4;
 	int errors = 0;
 
@@ -184,5 +185,3 @@ test_macros(void)
 
 
 }   /* end test_macros() */
-
-

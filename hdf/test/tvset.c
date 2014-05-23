@@ -2054,7 +2054,7 @@ test_getvgroups(void)
     int32 vgroup_id, vgroup0_id, vgroup1_id, vgroup2_id,
 	  vgroup3_id, vgroup4_id, vgroup5_id;	/* Various vgroup IDs */
     int32 vgroup_ref;   /* Vgroup ref */
-    uintn n_vgs=0;
+    intn n_vgs=0;
     uint16 *refarray;
     int32 ref_list[NUM_VGROUPS];
     char vgclass[20];
@@ -2337,7 +2337,7 @@ intn check_vgs(int32 id,
 	   uint16 *resultarray) /* array containing expected values */
 {
     uint16 *refarray=NULL;
-    uintn count=0, ii;
+    intn count=0, ii;
     char message[30];
     intn ret_value=SUCCEED;
 
@@ -2347,7 +2347,7 @@ intn check_vgs(int32 id,
     /* Get and verify the number of vgroups in the file */
     count = Vgetvgroups(id, start_vg, n_vgs, NULL);
     CHECK(count, FAIL, "Vgetvgroups");
-    VERIFY(count, resultcount, "Vgetvgroups");
+    VERIFY(count, (intn)resultcount, "Vgetvgroups");
 
     /* Allocate space to retrieve the reference numbers of 'count' vgroups */
     refarray = (uint16 *)HDmalloc(sizeof(uint16)*count);
@@ -2359,7 +2359,7 @@ intn check_vgs(int32 id,
     /* Get all the vgroups in the file */
     count = Vgetvgroups(id, start_vg, count, refarray);
     CHECK(count, FAIL, "Vgetvgroups");
-    VERIFY(count, resultcount, "Vgetvgroups");
+    VERIFY(count, (intn)resultcount, "Vgetvgroups");
 
     for (ii = 0; ii < count; ii++)
 	if (refarray[ii] != resultarray[ii])
@@ -2380,7 +2380,8 @@ intn check_vds(int32 id,
 	   uint16 *resultarray) /* array containing expected values */
 {
     uint16 *refarray=NULL;
-    uintn count=0, ii;
+    intn count=0;
+    intn ii;
     char message[30];
     intn ret_value=SUCCEED;
 
@@ -2390,7 +2391,7 @@ intn check_vds(int32 id,
     /* Get and verify the number of vdatas in the file */
     count = VSgetvdatas(id, start_vd, n_vds, NULL);
     CHECK(count, FAIL, message);
-    VERIFY(count, resultcount, message);
+    VERIFY(count, (intn)resultcount, message);
 
     /* Allocate space to retrieve the reference numbers of 'count' vdatas */
     refarray = (uint16 *)HDmalloc(sizeof(uint16)*count);
@@ -2402,7 +2403,7 @@ intn check_vds(int32 id,
     /* Get all the vdatas in the file */
     count = VSgetvdatas(id, start_vd, count, refarray);
     CHECK(count, FAIL, message);
-    VERIFY(count, resultcount, message);
+    VERIFY(count, (intn)resultcount, message);
 
     for (ii = 0; ii < count; ii++)
 	if (refarray[ii] != resultarray[ii])
@@ -2429,7 +2430,7 @@ test_getvdatas(void)
 	  vgroup6_id, vgroup7_id, vgroup9_id;	/* Various vgroup IDs */
     int32 vdata1_id, vdata2_id, vdata3_id, vdata4_id, vdata5_id,
 	  vdata6_id, vdata7_id;    /* Various vdata IDs */
-    uintn n_vgs=0;
+    intn n_vgs=0;
     int32 ref_list[NUM_VGROUPS], vdref_list[NUM_VDATAS];
     char vgclass[20];
     int ii;

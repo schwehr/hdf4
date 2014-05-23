@@ -1096,7 +1096,7 @@ test_dfr8_24()
 	and the command od on the file */
     for (ii = 0; ii < n_images; ii++)
     {
-	uintn info_count = 0;
+	intn info_count = 0;
 
 	riid = GRselect(grid, ii);
 	CHECK_VOID(riid, FAIL, "GRselect");

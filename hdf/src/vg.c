@@ -1584,7 +1584,9 @@ VSIgetvdatas(int32 id,		 /* IN: file id or vgroup id */
     CONSTR(FUNC, "VSIgetvdatas");
     vginstance_t *vg_inst = NULL;
     group_t id_type = HAatom_group(id);    /* id is FIDGROUP or VGIDGROUP */
-    intn        nactual_vds=0, nfound_vds=0, ii;
+    uintn       nactual_vds=0;
+    uintn       nfound_vds=0;
+    intn        ii;
     VGROUP     *vg = NULL;
     vfile_t    *vf = NULL;
     int32	vs_ref;
@@ -1615,7 +1617,8 @@ VSIgetvdatas(int32 id,		 /* IN: file id or vgroup id */
 	nfound_vds = 0;	/* number of user-created vdatas */
 	vs_ref = VSgetid(id, -1);  /* get ref number of first vd in the file */
 	while ((vs_ref != FAIL)	   /* there are more vdatas */
-		&& ((nactual_vds < n_vds) || (n_vds == 0))
+		&& ((nactual_vds < n_vds)
+                    || (n_vds == 0))
 		&& (nactual_vds <= nfound_vds))
 	{
 	    intn found = FALSE;

@@ -402,8 +402,17 @@ HRPinquire(accrec_t * access_rec, int32 *pfile_id, uint16 *ptag,
         *ptag = data_tag;
     if (pref)
         *pref = data_ref;
-    if (plength)
-        *plength = (access_rec->new_elem ? -1 : info->image_size);
+    if (plength) {
+        if (!access_rec->new_elem && info->image_size > 2000000000) {
+            static int done = 0;
+            if (!done) {
+                done = 1;
+                fprintf(stderr, "WARNING: dangerous int32 cast at %s:%d "
+                        "(warn only first time)\n", __FILE__, __LINE__);
+            }
+        }
+        *plength = (access_rec->new_elem ? -1 : (int32)info->image_size);
+    }
     if (poffset)
         *poffset = data_off;
     if (pposn)
@@ -557,4 +566,3 @@ done:
 
   return(ret_value);
 }   /* HRPinfo */
-

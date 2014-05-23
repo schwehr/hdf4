@@ -865,7 +865,7 @@ GRgetdatainfo(int32 riid, uintn start_block, uintn info_count,
     ri_info_t *ri_ptr;          /* ptr to the image to work with */
     int32 hdf_file_id;		/* short cut for file id */
     int32 length = 0;
-    uintn count;
+    intn count;
     intn   ret_value = SUCCEED;
 
     /* Clear error stack */
@@ -974,7 +974,7 @@ GRgetpalinfo(int32 gr_id, uintn pal_count, hdf_ddinfo_t *palinfo_array)
     gr_info_t *gr_ptr;
     int32 file_id;
     int32 aid = FAIL;
-    intn  idx;
+    uintn  idx;
     intn  ret_value = SUCCEED;
 
     /* Clear error stack */

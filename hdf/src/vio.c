@@ -766,9 +766,9 @@ VDATA *
 VSPgetinfo(HFILEID f, /* IN: file handle */
            uint16 ref /* IN: ref of the Vdata */)
 {
-	VDATA 		*vs = NULL;   /* new vdata to be returned */
-  /* int32       vh_length;   int32 is mismatches Vhbuf's type -- uint32 */
-    size_t vh_length;         /* length of the vdata header */
+    VDATA *vs = NULL;   /* new vdata to be returned */
+    /* vh_length must be signed to catch the FAIL */
+    int32 vh_length;         /* length of the vdata header */
     VDATA *ret_value = NULL;  /* FAIL */
     CONSTR(FUNC, "VSPgetinfo");
 
@@ -778,12 +778,13 @@ VSPgetinfo(HFILEID f, /* IN: file handle */
     /* get a free Vdata node? */
     if ((vs = VSIget_vdata_node()) == NULL)
         HGOTO_ERROR(DFE_NOSPACE, NULL);
- 
+
     /* need to fetch length of vdata from file */
     if ((vh_length = Hlength(f,DFTAG_VH,ref)) == FAIL)
         HGOTO_ERROR(DFE_BADLEN, NULL);
 
-    if(vh_length > Vhbufsize)
+    /* TODO: make sure this int32 case is safe. */
+    if(vh_length > (int32)Vhbufsize)
       {
         Vhbufsize = vh_length;
 
