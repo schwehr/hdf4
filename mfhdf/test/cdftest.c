@@ -415,10 +415,11 @@ char *argv[];
 #endif /* MDEBUG */
 	ncopts =  NC_VERBOSE ; /* errors non fatal */
 
-
+        /* TODO: Why is this flaky? */
 	id = nccreate(fname,NC_NOCLOBBER) ;
 	if( id == -1 ) {
-		fprintf(stderr, "trying again\n") ;
+                fprintf(stderr, "trying again nccreate(%s, NC_NOCLOBBER) %s:%d\n",
+                        fname, __FILE__, __LINE__) ;
 		id = nccreate(fname,NC_CLOBBER) ;
 	}
 	if( id == -1 ) 
