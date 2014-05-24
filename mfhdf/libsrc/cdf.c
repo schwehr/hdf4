@@ -2206,7 +2206,8 @@ hdf_read_attrs(XDR *xdrs, NC *handle, int32 vg)
                             goto done;
                         }
 
-                      if ((type = hdf_unmap_type(nt)) == FAIL)
+		      /* TODO: Use NC_FAIL instead of FAIL. */
+                      if ((int)(type = hdf_unmap_type(nt)) == FAIL)
                         {
                             ret_value = NULL;
                             goto done;
@@ -2569,7 +2570,8 @@ hdf_read_vars(XDR *xdrs,
                                     }
 
                                   HDFtype = ntstring[1];
-                                  if ((type = hdf_unmap_type(HDFtype)) == FAIL)
+				  /* TODO: Use NC_FAIL instead of FAIL. */
+                                  if ((int)(type = hdf_unmap_type(HDFtype)) == FAIL)
                                     {
 #ifdef HDF_READ_VARS
                                         fprintf(stderr, "hdf_read_vars:hdf_unmap_teyp failed\n");

@@ -241,7 +241,7 @@ int  options_get_info(options_t      *options,     /* global options */
                 
             }
             /* check if we have COMP information; 0 is the NONE option */
-            if (obj->comp.type>=0)
+            /* Tautology with unsigned value - enums are unsigned: if (obj->comp.type>=0) */
             {
                 *comp_type   = obj->comp.type;
                 *info        = obj->comp.info;

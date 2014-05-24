@@ -2804,13 +2804,7 @@ Vgetnamelen(int32 vkey,   /* IN: vgroup key */
     /* if name had been set... */
     else
     {
-	size_t temp_len = HDstrlen(vg->vgname); /* shortcut */
-
-	/* return name's length if it is a valid value */
-	if (temp_len >= 0)
-            *name_len = (uint16)temp_len;
-	else /* unlikely, but just in case */
-	    ret_value = FAIL;
+        *name_len = HDstrlen(vg->vgname);
     }
 
 done:
@@ -2866,13 +2860,7 @@ Vgetclassnamelen(int32 vkey,   /* IN: vgroup key */
     /* if name had been set... */
     else
     {
-	size_t temp_len = HDstrlen(vg->vgclass); /* shortcut */
-
-	/* return class name's length if it is a valid value */
-	if (temp_len >= 0)
-            *classname_len = (uint16)temp_len;
-	else /* unlikely, but just in case */
-	    ret_value = FAIL;
+        *classname_len = HDstrlen(vg->vgclass);
     }
 
 done:

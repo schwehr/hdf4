@@ -259,6 +259,7 @@ typedef enum {
 	NC_DIMENSION,
 	NC_VARIABLE,
 	NC_ATTRIBUTE
+	/* TODO: Add NC_FAIL to replace the use of FAIL. */
 } nc_type ;
 #else
 typedef int nc_type ;

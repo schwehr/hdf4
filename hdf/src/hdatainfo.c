@@ -992,7 +992,7 @@ GRgetpalinfo(int32 gr_id, uintn pal_count, hdf_ddinfo_t *palinfo_array)
 
     /* Validate array size.  Fail when count is a pos number but the array is
        NULL, or when count is a neg number */
-    if ((pal_count > 0 && palinfo_array == NULL) || pal_count < 0)
+    if ((pal_count > 0 && palinfo_array == NULL))
         HGOTO_ERROR(DFE_ARGS, FAIL);
 
     /* If only the number of palette tags is interested, return that */

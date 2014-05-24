@@ -432,7 +432,8 @@ hdf_read_ndgs(NC *handle)
                               }
                     
                             HDFtype = ntstring[1];
-                            if ((type = hdf_unmap_type(HDFtype)) == FAIL)
+			    /* TODO: Use NC_FAIL instead of FAIL. */
+                            if ((int)(type = hdf_unmap_type(HDFtype)) == FAIL)
                               {
 #ifdef DEBUG
                                   /* replace it with NCAdvice or HERROR? */
@@ -1100,7 +1101,8 @@ hdf_read_ndgs(NC *handle)
                         {
                             nc_type stype;
 
-                            if ((stype = hdf_unmap_type(scaletypes[dim])) == FAIL)
+			    /* TODO: Use NC_FAIL instead of FAIL. */
+                            if ((int)(stype = hdf_unmap_type(scaletypes[dim])) == FAIL)
                               {
 #ifdef DEBUG
                                   /* replace it with NCAdvice or HERROR? */

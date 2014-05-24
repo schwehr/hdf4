@@ -1406,7 +1406,8 @@ SDcreate(int32  fid,      /* IN: file ID */
       } /* end for 'i < rank' */
 
     /* create the actual variable */
-    if ((nctype = hdf_unmap_type((int)nt)) == FAIL)
+    /* TODO: Use NC_FAIL instead of FAIL. */
+    if ((int)(nctype = hdf_unmap_type((int)nt)) == FAIL)
       {
 #ifdef SDDEBUG
           /* replace it with NCAdvice or HERROR? */
@@ -1832,7 +1833,8 @@ SDIputattr(NC_array **ap,   /* IN/OUT: attribute list */
     fprintf(stderr, "SDIputattr: I've been called\n");
 #endif
     
-    if ((type = hdf_unmap_type((int)nt)) == FAIL)
+    /* TODO: Use NC_FAIL instead of FAIL. */
+    if ((int)(type = hdf_unmap_type((int)nt)) == FAIL)
       {
           /* replace it with NCAdvice or HERROR? */
           ret_value = FAIL;
@@ -3207,7 +3209,8 @@ SDIgetcoordvar(NC     *handle, /* IN: file handle */
 #ifdef SDDEBUG
                       fprintf(stderr, "SDIgetcoordvar redefining type\n");
 #endif
-                      if (((*dp)->type = hdf_unmap_type((int)nt)) == FAIL)
+		      /* TODO: Use NC_FAIL instead of FAIL. */
+                      if ((int)((*dp)->type = hdf_unmap_type((int)nt)) == FAIL)
                         {
 #ifdef SDDEBUG
                             /* replace it with NCAdvice or HERROR? */
@@ -3245,7 +3248,8 @@ SDIgetcoordvar(NC     *handle, /* IN: file handle */
     if(nt == 0) 
         nt = DFNT_FLOAT32;
 
-    if ((nctype = hdf_unmap_type((int)nt)) == FAIL)
+    /* TODO: Use NC_FAIL instead of FAIL. */
+    if ((int)(nctype = hdf_unmap_type((int)nt)) == FAIL)
       {
           /* replace it with NCAdvice or HERROR? */
           ret_value = FAIL;
