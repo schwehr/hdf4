@@ -42,7 +42,7 @@ static void
 pr_vals(vp, len, fmt, more, lastrow, vals)
      struct ncvar *vp;		/* variable */
      long len;			/* number of values to print */
-     char *fmt;			/*
+     const char *fmt;			/*
 				 * printf format used for each value.  If
 				 * nc_type is NC_CHAR and this is NULL,
 				 * character arrays will be printed as strings
@@ -281,7 +281,7 @@ static void
 pr_cvals(vp, len, fmt, more, lastrow, vals, fsp, cor)
      struct ncvar *vp;		/* variable */
      long len;			/* number of values to print */
-     char *fmt;			/*
+     const char *fmt;			/*
 				 * printf format used for each value.  If
 				 * nc_type is NC_CHAR and this is NULL,
 				 * character arrays will be printed as strings
