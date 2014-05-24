@@ -821,8 +821,6 @@ DFstat(DF * dfile, DFdata * dfinfo)
     else
         DFerror = DFE_NONE;
 
-    dfinfo = dfinfo;
-
     return (0);
 }
 

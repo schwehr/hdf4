@@ -476,9 +476,6 @@ HCIcnbit_term(compinfo_t * info)
     CONSTR(FUNC, "HCIcnbit_term");
 #endif
 
-    /* shut compiler up */
-    info = info;
-
 #ifdef TESTING
     printf("HCPcnbit_term(): func called\n");
 #endif
@@ -628,9 +625,6 @@ HCPcnbit_seek(accrec_t * access_rec, int32 offset, int origin)
     comp_coder_nbit_info_t *nbit_info;  /* ptr to n-bit info */
     int32       bit_offset;     /* offset of the bit to seek to */
 
-    /* shut compiler up */
-    origin = origin;
-
     info = (compinfo_t *) access_rec->special_info;
     nbit_info = &(info->cinfo.coder_info.nbit_info);
 
@@ -760,17 +754,6 @@ HCPcnbit_inquire(accrec_t * access_rec, int32 *pfile_id, uint16 *ptag,
                  uint16 *pref, int32 *plength, int32 *poffset,
                  int32 *pposn, int16 *paccess, int16 *pspecial)
 {
-    /* shut compiler up */
-    access_rec = access_rec;
-    pfile_id = pfile_id;
-    ptag = ptag;
-    pref = pref;
-    plength = plength;
-    poffset = poffset;
-    pposn = pposn;
-    paccess = paccess;
-    pspecial = pspecial;
-
     return (SUCCEED);
 }   /* HCPcnbit_inquire() */
 

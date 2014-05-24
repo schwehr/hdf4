@@ -289,10 +289,6 @@ HCIinit_model(int16 acc_mode, comp_model_info_t * minfo, comp_model_t model_type
 {
     CONSTR(FUNC, "HCIinit_model");  /* for HERROR */
 
-    /* shut compiler up */
-    acc_mode = acc_mode;
-    m_info = m_info;
-
     switch (model_type)
       {     /* determine the type of modeling */
           case COMP_MODEL_STDIO:    /* standard C stdio modeling */
@@ -756,9 +752,6 @@ HCIread_header(accrec_t * access_rec,
     uint8      *p;              /* pointer to the temporary buffer */
     uint8      *local_ptbuf;
     int32       ret_value=SUCCEED;
-
-    /* shut compiler up */
-    m_info = m_info;
 
     /* Get the compression header (description record) */
     HPread_drec(access_rec->file_id, access_rec->ddid, &local_ptbuf);

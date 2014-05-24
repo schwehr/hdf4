@@ -511,7 +511,6 @@ RETURNS
 VOID 
 VSdump(int32 vkey /* IN: vdata key */)
 {
-    vkey = vkey;    /* suppress warning */
 }   /* VSdump */
 
 /*-------------------------------------------------------

@@ -1228,9 +1228,6 @@ VSappendable(int32 vkey, /* IN: vdata key */
     /* clear error stack */
     HEclear();
 
-    /* shut compiler up */
-    blk = blk;
-
     /* check vdata key is a valid */
     if (HAatom_group(vkey) != VSIDGROUP)
         HGOTO_ERROR(DFE_ARGS, FAIL);

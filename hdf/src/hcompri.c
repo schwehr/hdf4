@@ -190,10 +190,7 @@ DESCRIPTION
 int32
 HRPstread(accrec_t * rec)
 {
-    /* shut compilers up*/
-    rec=rec;
-
-assert(0 && "Should never be called");
+  assert(0 && "Should never be called");
   return (FAIL);
 }   /* HRPstread */
 
@@ -213,10 +210,7 @@ DESCRIPTION
 int32
 HRPstwrite(accrec_t * rec)
 {
-    /* shut compilers up*/
-    rec=rec;
-
-assert(0 && "Should never be called");
+  assert(0 && "Should never be called");
   return (FAIL);
 }   /* HRPstwrite */
 

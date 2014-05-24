@@ -225,10 +225,7 @@ DESCRIPTION
 int32
 HBPstread(accrec_t * rec)
 {
-    /* shut compilers up*/
-    rec=rec;
-
-assert(0 && "Should never be called");
+  assert(0 && "Should never be called");
   return (FAIL);
 }   /* HBPstread */
 
@@ -248,10 +245,7 @@ DESCRIPTION
 int32
 HBPstwrite(accrec_t * rec)
 {
-    /* shut compilers up*/
-    rec=rec;
-
-assert(0 && "Should never be called");
+  assert(0 && "Should never be called");
   return (FAIL);
 }   /* HBPstwrite */
 

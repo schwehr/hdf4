@@ -69,8 +69,6 @@ swap_arr(int32 *arr, intn a, intn b)
 intn
 tcompare(VOIDP k1, VOIDP k2, intn cmparg)
 {
-    /* shut compiler up */
-    cmparg=cmparg;
     return ((intn) ((*(int32 *) k1) - (*(int32 *) k2)));
 }
 

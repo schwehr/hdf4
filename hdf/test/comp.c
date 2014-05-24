@@ -115,11 +115,6 @@ static void read_data(int32 fid, uint16 ref_num, intn test_num, int32 ntype);
 static void
 init_model_info(comp_model_t m_type, model_info * m_info, int32 test_ntype)
 {
-    /* shut the compiler up */
-    m_type = m_type;
-    m_info = m_info;
-    test_ntype = test_ntype;
-
     switch (m_type)
       {
           case COMP_MODEL_STDIO:

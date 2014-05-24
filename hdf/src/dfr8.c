@@ -1229,8 +1229,6 @@ DFR8writeref(const char *filename, uint16 ref)
       if(DFR8Istart()==FAIL)
           HGOTO_ERROR(DFE_CANTINIT, FAIL);
 
-  /* shut compiler up */
-  filename = filename;
   Writeref = ref;
 
 done:

@@ -1084,9 +1084,6 @@ DFGRIgetimlut(const char *filename, void * imlut, int32 xdim, int32 ydim,
     int32       aid;
     intn        ret_value = SUCCEED;
 
-    /* shut compiler up */
-    isfortran = isfortran;
-
     HEclear();
 
     /* Perform global, one-time initialization */
@@ -1404,9 +1401,6 @@ DFGRIaddimlut(const char *filename, const void * imlut, int32 xdim, int32 ydim,
     r8dims;
     uint8      *p;
     intn        ret_value = SUCCEED;
-
-    /* shut compiler up */
-    isfortran = isfortran;
 
     HEclear();
 

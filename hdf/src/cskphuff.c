@@ -595,9 +595,6 @@ HCPcskphuff_seek(accrec_t * access_rec, int32 offset, int origin)
     comp_coder_skphuff_info_t *skphuff_info;    /* ptr to skipping Huffman info */
     uint8      *tmp_buf;        /* pointer to throw-away buffer */
 
-    /* shut compiler up */
-    origin = origin;
-
     info = (compinfo_t *) access_rec->special_info;
     skphuff_info = &(info->cinfo.coder_info.skphuff_info);
 
@@ -740,17 +737,6 @@ HCPcskphuff_inquire(accrec_t * access_rec, int32 *pfile_id, uint16 *ptag,
                     uint16 *pref, int32 *plength, int32 *poffset,
                     int32 *pposn, int16 *paccess, int16 *pspecial)
 {
-    /* shut compiler up */
-    access_rec = access_rec;
-    pfile_id = pfile_id;
-    ptag = ptag;
-    pref = pref;
-    plength = plength;
-    poffset = poffset;
-    pposn = pposn;
-    paccess = paccess;
-    pspecial = pspecial;
-
     return (SUCCEED);
 }   /* HCPcskphuff_inquire() */
 

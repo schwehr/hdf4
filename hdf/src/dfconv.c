@@ -112,13 +112,6 @@ DFKInoset(VOIDP source, VOIDP dest, uint32 num_elm,
 
     HEclear();
 
-    /* shut the compiler up about not using the arguments */
-    source = source;
-    dest = dest;
-    num_elm = num_elm;
-    source_stride = source_stride;
-    dest_stride = dest_stride;
-
     /* If this is causing a problem for you, call DFKsetntype */
     HERROR(DFE_BADCONV);
     return FAIL;

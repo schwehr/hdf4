@@ -78,9 +78,6 @@ main(int argc, char * argv[] )
     const char *in16 = "IN16";
     const char *in8  = "IN08";	
 
-    /* shut compiler up */
-    argv=argv; argc=argc;
-
     /*
      * initialize the row, column, and plane vectors
      *

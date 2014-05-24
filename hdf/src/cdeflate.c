@@ -520,9 +520,6 @@ HCPcdeflate_seek(accrec_t * access_rec, int32 offset, int origin)
     comp_coder_deflate_info_t *deflate_info;    /* ptr to gzip 'deflate' info */
     uint8      tmp_buf[DEFLATE_TMP_BUF_SIZE];   /* temporary buffer */
 
-    /* shut compiler up */
-    origin = origin;
-
     info = (compinfo_t *) access_rec->special_info;
     deflate_info = &(info->cinfo.coder_info.deflate_info);
 
@@ -733,17 +730,6 @@ HCPcdeflate_inquire(accrec_t * access_rec, int32 *pfile_id, uint16 *ptag,
                     uint16 *pref, int32 *plength, int32 *poffset,
                     int32 *pposn, int16 *paccess, int16 *pspecial)
 {
-    /* shut compiler up */
-    access_rec = access_rec;
-    pfile_id = pfile_id;
-    ptag = ptag;
-    pref = pref;
-    plength = plength;
-    poffset = poffset;
-    pposn = pposn;
-    paccess = paccess;
-    pspecial = pspecial;
-
     return (SUCCEED);
 }   /* HCPcdeflate_inquire() */
 

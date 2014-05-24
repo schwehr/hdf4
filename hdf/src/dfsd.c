@@ -4569,9 +4569,6 @@ DFSDIputslice(int32 windims[], VOIDP data, int32 dims[], intn isfortran)
   intn        ret_value = SUCCEED;
   CONSTR(FUNC, "DFSDIputslice");
 
-  /* shut compiler up */
-  isfortran = isfortran;
-
   HEclear();
 
     /* Perform global, one-time initialization */
@@ -5089,13 +5086,7 @@ intn
 DFSDreadslab(const char *filename, int32 start[], int32 slab_size[],
              int32 stride[], VOIDP buffer, int32 buffer_size[])
 {
-  intn  ret_value = SUCCEED;
-  /* shut compiler up */
-  stride = stride;
-
-  ret_value = (DFSDgetslice(filename, start, slab_size, buffer, buffer_size));
-
-  return ret_value;
+  return DFSDgetslice(filename, start, slab_size, buffer, buffer_size);
 }
 
 /*-----------------------------------------------------------------------------
@@ -5321,9 +5312,6 @@ DFSDwriteslab(int32 start[], int32 stride[],
                                 /*   of current block */
   intn       ret_value = SUCCEED;
   CONSTR(FUNC, "DFSDwriteslab");
-
-  /* shut compiler up */
-  stride = stride;
 
   /* Clear error stack  */
   HEclear();

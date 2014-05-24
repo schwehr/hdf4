@@ -2305,8 +2305,6 @@ intn
 tagcompare(VOIDP k1, VOIDP k2, intn cmparg)
 {
   intn  ret_value;
-  /* shut compiler up */
-  cmparg = cmparg;
 
   ret_value = ((intn) ((*(uint16 *) k1) - (*(uint16 *) k2)));    /* valid for integer keys */
 

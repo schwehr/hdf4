@@ -204,9 +204,6 @@ mcache_open(
     intn          entry;         /* index into hash table */
     int32         pageno;
 
-    /* shut compiler up */
-    key=key;
-
     /* Set the pagesize and max # of pages to cache */
     if(pagesize == 0)
         pagesize = (int32)DEF_PAGESIZE;
@@ -490,9 +487,6 @@ mcache_get(
     int32        rpagesize;   /* pagesize to read */
 #endif /* UNUSED */
     intn         list_hit;    /* hit flag */
-
-    /* shut compiler up */
-    flags=flags;
 
 #ifdef MCACHE_DEBUG
     (VOID)fprintf(stderr,"mcache_get: entering \n");

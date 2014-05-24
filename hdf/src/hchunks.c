@@ -858,8 +858,6 @@ chkcompare(void * k1,   /* IN: first key */
            intn cmparg /* IN: not sure? */)
 {
     intn  ret_value;
-    /* shut compiler up */
-    cmparg = cmparg;
 
     /* valid for integer keys */
     ret_value = ((intn) ((*(int32 *) k1) - (*(int32 *) k2)));    
@@ -1537,9 +1535,6 @@ HMCcreate(int32 file_id,       /* IN: file to put chunked element in */
     char        v_name[VSNAMELENMAX + 1] = "";/* name of vdata i.e. chunk table */
     char        v_class[VSNAMELENMAX + 1] = ""; /* Vdata class */
     intn        i;                 /* loop index */
-
-    /* shut compiler up */
-    nlevels=nlevels;
 
     /* clear error stack and validate file record id */
     HEclear();
@@ -2710,9 +2705,6 @@ HMCsetMaxcache(int32 access_id, /* IN: access aid to mess with */
     accrec_t    *access_rec = NULL;   /* access record */
     chunkinfo_t *info       = NULL;   /* chunked element information record */
     int32       ret_value = SUCCEED;
-
-    /* shut compiler up */
-    flags=flags;
 
 #ifdef CHK_DEBUG_2
     fprintf(stderr,"HMCsetMaxcache: access_id =%d \n", access_id);
