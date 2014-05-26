@@ -45,17 +45,6 @@ include_HEADERS = hdf2netcdf.h local_nc.h mfhdf.h hdf4_netcdf.h mfhdfi.h mfdatai
 # mfdatainfo.h should be added conditionally only; should local_nc.h even be here? -BMR
 endif
 
-# The following is a workaround. Since Fortran is included in this 
-# Makefile.am, automake will always try to use the Fortran linker, even when
-# fortran has been disabled in configure. The Fortran linker gets confused 
-# when shared libraries are enabled, so when Fortran is not enabled,
-# this replaces the Fortran link macro with the C link macro.
-if HDF_BUILD_FORTRAN
-    # do nothing
-else
-    F77LINK = $(LINK)
-endif
-
 #############################################################################
 ##                          And the cleanup                                ##
 #############################################################################
